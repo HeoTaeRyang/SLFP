@@ -1,27 +1,23 @@
-import cv2
 from deepface import DeepFace
+import numpy as np
 
-#GPU 사용해서 실행 필요
 
-#테스트 사진
-test_path = 'backend/ai/data/tr.jpg'
-test_img = cv2.imread(test_path)
+def find_similar_player(img_path):
+  embedding_file = 'backend/ai/reference_embeddings.npy'
+  paths_file = 'backend/ai/reference_image_paths.npy'
+  reference_embeddings = np.load(embedding_file)
+  reference_image_paths = np.load(paths_file)
 
-for i in range(125): #0~124번 check
-  img_path = 'backend/ai/data/' + str(i) + '.jpg'
-  img = cv2.imread(img_path)
-  if img is not None: #없는 번호 있을 수 있어서 check
-    tmp = DeepFace.verify(img1_path=test_path,
-                          img2_path=img_path,
-                          detector_backend='retinaface',
-                          model_name='Facenet')
-    print(i,':',tmp['distance'])
-    if i == 0:
-      res = tmp
-      res_n = i
-    else:
-      if res['distance'] > tmp['distance']: #distance 낮을수록 닮음
-        res = tmp
-        res_n = i
+  img_embedding = DeepFace.represent(img_path=img_path,
+                                      model_name='Facenet',
+                                      detector_backend='retinaface')[0]["embedding"]
 
-print(f"{res_n}번 선수")
+  reference_embeddings = np.array(reference_embeddings)
+  img_embedding = np.array(img_embedding)
+  distances = np.linalg.norm(reference_embeddings - img_embedding, axis=1)
+  closest_index = np.argmin(distances)
+  
+  # print("유사도 거리:", distances[closest_index])
+  
+  return(reference_image_paths[closest_index])
+  
