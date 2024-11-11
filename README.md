@@ -1,1 +1,1 @@
-SamSung Lions Fan Page
+Samsung Lions Fan Page
