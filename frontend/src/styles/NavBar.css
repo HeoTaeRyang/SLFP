@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@100;200;300;400;500;600;700&display=swap');
+
+
+
+
+.navbar {
+  display: flex;
+  flex-direction: column;  /* 수직으로 배치 */
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #ffffff;
+  flex-wrap: wrap;
+}
+
+.nav-bar-top {
+  display: flex;
+  justify-content: center;  /* 항목을 가로로 중앙 정렬 */
+  align-items: center;  /* 항목을 세로로 중앙 정렬 */
+  height: 140px;
+  width: 100%;
+}
+
+.nav-bar-down {
+  display: flex;
+  justify-content: center;  /* 항목을 가로로 중앙 정렬 */
+  align-items: center;  /* 항목을 세로로 중앙 정렬 */
+  height: 50px;
+  width: 100%;
+}
+
+.nav-con {
+  display: flex;
+  justify-content: center;  /* 항목 간 간격을 균등하게 분배 */
+  align-items: center;  /* 항목 세로 중앙 정렬 */
+  width: 100%;  /* 전체 너비 사용 */
+}
+
+.nav-logo-box {
+  display: flex;
+  justify-content: center;
+  flex-basis: 40%;  /* 로고는 가운데 배치 */
+}
+
+.navbt6 {
+  text-align: center;
+  line-height: 150%;
+  letter-spacing: -0.03em;
+  color: #33aaff;
+  font-family: "Montserrat", sans-serif;
+  font-size: 44px;
+  font-weight: 700;
+  margin: 0 60px;
+  margin-top: 30px;
+}
+
+.navbt0, .navbt1, .navbt2, .navbt3, .navbt4, .navbt5 {
+  text-align: center;
+  line-height: 150%;
+  letter-spacing: -0.03em;
+  color: #000000;
+  font-family: "Roboto", sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  position: relative;
+  margin: 0 60px;  /* 각 항목 사이에 일정한 간격을 두기 위해 margin 사용 */
+  top:20px;
+}
+
+.navbt7, .navbt8, .navbt9, .navbt10 {
+  text-align: center;
+  line-height: 150%;
+  letter-spacing: -0.03em;
+  color: #000000;
+  font-family: "Roboto", sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  position: relative;
+  margin: 0 25px;  /* 각 항목 사이에 일정한 간격을 두기 위해 margin 사용 */
+  top:-20px;
+  right: 570px; 
+  
+}
+
+
+a {
+  text-decoration: none;
+}
+
+
+.navbt0:hover, .navbt1:hover, .navbt2:hover, .navbt3:hover, .navbt4:hover, .navbt5:hover
+, .navbt7:hover, .navbt8:hover, .navbt9:hover , .navbt10:hover {
+  color: #33aaff; /* 마우스를 올렸을 때 색 변경 */
+}
+
+.navbt6:hover{
+  color: #3358ff
+}

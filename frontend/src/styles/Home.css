@@ -1,0 +1,218 @@
+/* src/style.css */
+@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@100;200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+/* 헤드 이미지 영역*/
+.mainbox {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    padding: 0 0px;
+    
+}
+
+.mainimg {
+  width:100vw;
+  height:720px;
+  background: #72c4ff;
+}
+
+.mainimg-slfp {
+  position: relative;
+  width: 1280px;
+  height: 100%;
+}
+
+.maincontent {
+  display: flex;
+  flex-direction: column;  /* 세로로 요소 배치 */
+  align-items: center;     /* 내용 중앙 정렬 */
+  text-align: center;      /* 텍스트를 중앙으로 정렬 */
+  padding: 0px;
+}
+
+/*소개글 영역*/
+
+.main-text{
+  height: 100%;   /* 높이는 내용에 따라 자동으로 조정 */
+  display: flex;
+  flex-direction: column; /* 항목들을 세로로 쌓음 */
+  justify-content: flex-start;  /* 세로로 쌓일 때, 위에서부터 배치 */
+  align-items: center;      /* 가로 중앙 정렬 */
+  padding: 120px;
+}
+
+.main-aboutus-1{
+  color: #000000;
+  font-family: "Montserrat", sans-serif;
+  font-size: 30px;
+  line-height: 42px;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.main-aboutus-2{
+  color: #000000;
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  line-height: 42px;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+  margin-top: 30px;
+}
+
+.main-aboutus-3{
+  color: #000000;
+  font-family: "Roboto", sans-serif;
+  font-size: 22px;
+  line-height: 42px;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+}
+
+.main-history-1{
+  margin-top: 130px;
+  color: #000000;
+  font-family: "Montserrat", sans-serif;
+  font-size: 30px;
+  line-height: 42px;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.main-history-2{
+  text-align: left;
+  margin-top: 50px;
+  color: #000000;
+  font-family: "Roboto", sans-serif;
+  font-size: 22px;
+  line-height: 42px;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+}
+
+
+.main-news-box{
+  background: #ffffff;
+  border-radius: 20px;
+  border-style: solid;
+  border-color: #767676;
+  border-width: 1px;
+  margin-top:130px;
+  width: 820px;
+  height: 730px;
+  display:flex;
+  flex-direction: column; /* 세로로 정렬 */
+  position: relative;
+  padding: 20px;
+}
+
+.main-news-title{
+color: #000000;
+text-align: center;
+font-family: "Futura-Bold", sans-serif;
+font-size: 30px;
+font-weight: 700;
+}
+
+.main-news-text1{
+  margin-top: 40px;
+  text-align:left;
+}
+
+.main-news-text2{
+  margin-top: 20px;
+  text-align:left;
+}
+
+.main-news-read-button1, .main-news-read-button2{
+  margin-top: 160px;
+  width:135px;
+  height:55px;
+  font-size:18px;
+}
+
+.main-news-line {
+  margin-top: -1px;
+  border-style: solid;
+  border-color: #d9d9d9;
+  border-width: 1px 0 0 0;
+  height: 0px;
+  position: relative;
+  transform-origin: 0 0;
+  transform: rotate(-0.149deg) scale(1, 1);
+}
+
+
+.main-news-pic1,
+.main-news-pic1 * {
+  box-sizing: border-box;
+}
+.main-news-pic1 {
+  top: 120px;
+  left: 580px;
+  width: 215px;
+  height: 215px;
+  position: absolute;
+  object-fit: cover;
+}
+
+.main-news-pic2
+.main-news-pic2 * {
+  box-sizing: border-box;
+}
+.main-news-pic2 {
+  top: 390px;
+  left: 580px;
+  width: 215px;
+  height: 215px;
+  position: absolute;
+  object-fit: cover;
+}
+
+
+.main-news-read-all-button{
+  margin-top:35px;
+  width:165px;
+  height:55px;
+  font-size:18px;
+  align-self:center;
+}
+
+/* footer 영역 */
+  .footer {
+    padding: 20px;
+    height: 50px;
+    position: relative;
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: center; /* 수평 중앙 정렬 */
+  }
+  
+  .footer_msg {
+    color: var(--black, #1a202c);
+    text-align: center;
+    font-family: var(
+      --semibold-type16-font-family,
+      "PlusJakartaSans-SemiBold",
+      sans-serif
+    );
+    font-size: var(--semibold-type16-font-size, 16px);
+    line-height: var(--semibold-type16-line-height, 150%);
+    letter-spacing: var(--semibold-type16-letter-spacing, -0.02em);
+    font-weight: var(--semibold-type16-font-weight, 600);
+    width: 328px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  
