@@ -1,0 +1,115 @@
+.admin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(242, 242, 242);
+    /* 화면 전체 높이 */
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.admin-top{
+    background: #818db4;
+    height: 1000px;
+    width:100vw;
+    text-align:center;
+    color : white;
+    font-size: 80px;
+        
+}
+
+.admin-bottom{
+    background: #818d75;
+    height: 1000px;
+    width:100vw;
+    text-align:center;
+    color : white;
+    font-size: 80px;
+    
+}
+
+.main-news-box{
+    background: #ffffff;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: #767676;
+    border-width: 1px;
+    width: 820px;
+    height: 730px;
+    display:flex;
+    flex-direction: column; /* 세로로 정렬 */
+    position: relative;
+    padding: 20px;
+}
+
+.main-news-title{
+  color: #000000;
+  text-align: center;
+  font-family: "Futura-Bold", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.main-news-text1{
+    margin-top: 40px;
+    text-align:left;
+  }
+
+.main-news-text2{
+    margin-top: 20px;
+    text-align:left;
+  }
+
+.main-news-read-button1, .main-news-read-button2{
+    margin-top: 160px;
+    width:135px;
+    height:55px;
+    font-size:18px;
+}
+
+.main-news-line {
+    margin-top: -1px;
+    border-style: solid;
+    border-color: #d9d9d9;
+    border-width: 1px 0 0 0;
+    height: 0px;
+    position: relative;
+    transform-origin: 0 0;
+    transform: rotate(-0.149deg) scale(1, 1);
+  }
+
+
+.main-news-pic1,
+.main-news-pic1 * {
+    box-sizing: border-box;
+  }
+.main-news-pic1 {
+    top: 120px;
+    left: 580px;
+    width: 215px;
+    height: 215px;
+    position: absolute;
+    object-fit: cover;
+  }
+  
+.main-news-pic2
+.main-news-pic2 * {
+    box-sizing: border-box;
+  }
+.main-news-pic2 {
+    top: 390px;
+    left: 580px;
+    width: 215px;
+    height: 215px;
+    position: absolute;
+    object-fit: cover;
+  }
+
+
+.main-news-read-all-button{
+    margin-top:35px;
+    width:165px;
+    height:55px;
+    font-size:18px;
+    align-self:center;
+}
