@@ -7,6 +7,9 @@ import sys
 import os
 import traceback
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/..")
+import random
+from werkzeug.security import generate_password_hash, check_password_hash
+from backend.db import user
 
 from ai import find_similar_player
 
@@ -48,6 +51,68 @@ def find_player():
         print("Error occurred:", e)
         print(traceback.format_exc())  # 전체 오류 메시지 출력
         return jsonify({'error': str(e)}), 500
+    
+# 선수 맞추기
+@app.route('/matchPlayer', methods=['POST'])
+def match_player():
+    folder_path = r'C:\Users\User\Desktop\SLFP-1\backend\db\players'
+    all_files = os.listdir(folder_path)
+    
+    random_image_file = random.choice(all_files)
+    random_image_path = os.path.join(folder_path, random_image_file) 
+    
+    player_number = os.path.splitext(random_image_file)[0]
+    
+    with open(random_image_path, "rb") as f:
+            player_photo = base64.b64encode(f.read()).decode('utf-8')
+    
+    random_player = {
+        'number': player_number,
+        'image': player_photo
+    }
+    
+    return jsonify(random_player)
+
+# 회원가입
+@app.route('/register', methods=['POST'])
+def register():
+    data = request.get_json()
+    userid = data.get('id')
+    password = data.get('password')
+    username = data.get('username')
+    
+    # 아이디 중복 확인
+    check_id = user.get_user(userid)
+    if check_id:
+        return jsonify({'error': '이미 존재하는 아이디 입니다.'}), 400
+    
+    # 비밀번호 해시 처리
+    hashed_password = generate_password_hash(password)
+    
+    # 사용자 추가
+    user.add_user(userid, hashed_password, username)
+    
+    return jsonify({'message': '회원가입에 성공 했습니다.'}), 200
+
+# 로그인
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    
+    userid = data.get("id")
+    password = data.get("password")
+    
+    # 사용자 존재 여부 확인
+    ckeck_id = user.get_user(userid)
+    if not ckeck_id:
+        return jsonify({'error': '존재하지 않는 아이디 입니다.'}), 400
+    
+    db_userid, db_password, db_username, db_point = ckeck_id[0]
+    
+    if not check_password_hash(db_password, password):
+        return jsonify({'error': '잘못된 비밀번호 입니다.'}), 400
+    
+    return jsonify({'message': '로그인에 성공 했습니다.'}), 200    
     
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
