@@ -6,6 +6,7 @@ import base64
 import sys
 import os
 import traceback
+from datetime import datetime as dt
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/..")
 import random
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -18,6 +19,7 @@ CORS(app)  # 모든 도메인에서 오는 요청을 허용
 
 IMAGE_FOLDER = "./db/players"
 
+#닮은 선수 찾기
 @app.route('/findLike', methods=['POST'])
 def find_player():
     file = request.files.get('image')
@@ -80,6 +82,8 @@ def register():
     userid = data.get('id')
     password = data.get('password')
     username = data.get('username')
+    now = dt.now()
+    date = now.strftime("%Y-%m-%d")
     
     # 아이디 중복 확인
     check_id = user.get_user(userid)
@@ -90,7 +94,7 @@ def register():
     hashed_password = generate_password_hash(password)
     
     # 사용자 추가
-    user.add_user(userid, hashed_password, username)
+    user.add_user(userid, hashed_password, username,date)
     
     return jsonify({'message': '회원가입에 성공 했습니다.'}), 200
 
@@ -107,12 +111,41 @@ def login():
     if not ckeck_id:
         return jsonify({'error': '존재하지 않는 아이디 입니다.'}), 400
     
-    db_userid, db_password, db_username, db_point = ckeck_id[0]
+    db_password = ckeck_id[0][1]
     
     if not check_password_hash(db_password, password):
         return jsonify({'error': '잘못된 비밀번호 입니다.'}), 400
     
     return jsonify({'message': '로그인에 성공 했습니다.'}), 200    
+
+#출석
+@app.route('/attendence', methods=['POST'])
+def attendence():
+    try:
+        data = request.get_json()
+        id = data.get('id', '')
+        
+        now = dt.now()
+        date = now.strftime("%Y-%m-%d")
+
+        print(id,date)
+        print(user.get_last_login(id))
+        if(user.get_last_login(id) != date):
+            user.set_last_login(id,date)
+            user.add_point(id,100)
+            res = "출석! 100포인트 지급."
+        else:
+            res = "이미 출석했습니다"
+        
+        response = {
+            'answer': res,
+        }
+        
+        # 결과를 JSON 형식으로 반환
+        return jsonify(response)
+    except Exception as e:
+        # 예외 처리: 에러 메시지를 클라이언트에 반환
+        return jsonify({'error': str(e)}), 500
     
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
