@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/NavBar.css";
-import axios from "axios";
 
 const NavBar: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -25,38 +24,17 @@ const NavBar: React.FC = () => {
     navigate("/login");
   };
 
-  // 출석 핸들러
-  const handleAttendance = async () => {
-    try {
-        const requestData = {
-            id: localStorage.getItem('userId'),
-        };
-
-        const response = await axios.post(
-            'http://localhost:5000/attendence',
-            requestData,
-            { headers: { 'Content-Type': 'application/json' } }
-        );
-        alert(response.data.answer);
-    } catch (e) {
-        console.error('error:', e);
-    }
-  }
-
   return (
     <nav className="navbar">
       <div className="nav-bar-top">
         <div className="nav-con">
           <a href="/" className="navbt0">선수단</a>
           <a href="/" className="navbt1">경기 정보</a>
-          <a href="/" className="navbt2">커뮤니티</a>
+          <a href="/free/post" className="navbt2">커뮤니티</a>
           <a href="/" className="navbt6">SAMSUNG LIONS</a>
           {isLoggedIn ? (
             <>
               <span className="navbt3">{userId ? `${userId}님` : "사용자님"}</span>
-              <button onClick={handleAttendance} className="navbt4">
-                출석
-              </button>
               <button onClick={handleLogout} className="navbt4">
                 로그아웃
               </button>

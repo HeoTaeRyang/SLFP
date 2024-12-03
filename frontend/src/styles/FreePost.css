@@ -1,0 +1,181 @@
+html, body, content {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+  
+  
+  .free-post-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    margin: 0;
+  }
+  
+  
+  .free-box {
+    margin: 0px;
+    border-radius: 0px;
+    background-color: rgb(255, 255, 255);
+    text-align: center; 
+    display: flex; /* Flexbox 활성화 */
+    flex-direction: column; /* 세로 방향 정렬 */
+    align-items: center; /* 자식 요소를 가로 중앙 정렬 */
+    justify-content: center; /* 세로 중앙 정렬 */
+    width: 100vw;
+    height: 320px;
+  }
+  
+  .free-box img {
+    /* 이미지 크기를 키움 */
+    height: 300px;
+  }
+  
+  .free-container-underbox {
+    display: flex; 
+    height: 4px;
+    width: 1200px;
+    background-color: rgb(132, 132, 132);
+  }
+  
+
+  .box-text{
+    color: #000000;
+    text-align: center;
+    font-family: "NexonLv1Gothic-Bold", sans-serif;
+    font-size: 24px;
+    line-height: 42px;
+    letter-spacing: 0.05em;
+    font-weight:500;
+    position: relative;
+    text-decoration: underline;
+    text-decoration-thickness: 1px; /* 밑줄 두께 설정 */
+    margin-top:125px; 
+    margin-bottom:125px;
+
+  }
+  .free-post-sort-array{
+    color: #787878;
+    font-family: "Roboto-Regular", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    position: relative;
+    left:300px;
+    margin-bottom: 50px;
+    margin-top:70px;
+  }
+  
+  
+  .free-post-list-box{
+    display: flex;
+    align-items: center;
+    background-color: rgb(242, 242, 242);
+    /* 화면 전체 높이 */
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .pagination button {
+    margin: 0 5px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: #888888; /* 기본 회색 배경 */
+    color: rgb(133, 133, 133);
+    border-radius: 5px;
+  }
+  
+  .pagination button.active {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+  }
+  
+  .pagination button:hover {
+    background-color: #aaaaaa; /* hover 시 조금 더 어두운 회색 */
+  }
+  
+  
+  
+  .free-send-button {
+    background-color: #007bff; /* 파란색 배경 */
+    color: #ffffff; /* 흰색 텍스트 */
+    border: none; /* 테두리 제거 */
+    border-radius: 5px; /* 둥근 모서리 */
+    padding: 10px 20px; /* 버튼 크기 조정 */
+    font-size: 16px; /* 글자 크기 */
+    cursor: pointer; /* 마우스를 올리면 포인터 커서 표시 */
+    transition: background-color 0.3s ease; /* 부드러운 색상 변화 */
+    margin-left:550px;
+    width:200px;
+  }
+  .free-send-button{
+    text-decoration: none; /* 텍스트에 밑줄을 없애기 */
+  }
+  /* 버튼 hover 효과 */
+  .free-send-button:hover {
+    background-color: #0056b3; /* 더 어두운 파란색 */
+  }
+  
+  .free-send-button:active {
+    transform: scale(0.95); /* 살짝 눌리는 효과 */
+    background-color: #003d7a; /* 눌렀을 때 색 변경 */
+  }
+  
+  .free-post-sort-button {
+    background-color: #cacaca; /* 기본 배경색 (연한 회색) */
+    color: #acacac; /* 기본 텍스트 색 */
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .free-post-sort-button.active {
+    background-color: #007bff; /* 활성화 상태에서의 배경색 */
+    color: white; /* 활성화 상태에서의 텍스트 색 */
+  }
+  
+  .free-post-sort-button:hover {
+    background-color: #5a5a5a; /* hover 상태에서의 배경색 */
+    color: white; /* hover 상태에서 텍스트 색 */
+  }
+
+
+.free-post-list{
+  display: flex; /* 가로 정렬 */
+  height:50px;
+  font-size: 22px;
+  line-height: 42px;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+
+.free-text-1{
+    width:340px;
+}
+.free-text-2{
+    width:360px;
+}
+.free-text-3{
+    width:210px;
+}
+
+.free-text-4{
+    width:170px;
+    
+}
+.free-text-5{
+    width:100px;
+}
+  
