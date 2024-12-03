@@ -11,6 +11,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/..")
 import random
 from werkzeug.security import generate_password_hash, check_password_hash
 from backend.db import user
+from backend.db import player
 
 from ai import find_similar_player
 
@@ -43,11 +44,13 @@ def find_player():
         with open(server_image_path, "rb") as f:
             player_photo = base64.b64encode(f.read()).decode('utf-8')
         
+        player_name = player.get_player_name(player_num)
+
         #db 연결시 번호 -> 이름 및 사진
         # 결과를 JSON 형식으로 반환
         return jsonify({
             'photo' : player_photo,
-            'name': player_num,
+            'name': player_name,
         })
     except Exception as e:
         print("Error occurred:", e)
@@ -68,8 +71,10 @@ def match_player():
     with open(random_image_path, "rb") as f:
             player_photo = base64.b64encode(f.read()).decode('utf-8')
     
+    player_name = player.get_player_name(player_number)
+
     random_player = {
-        'number': player_number,
+        'number': player_name,
         'image': player_photo
     }
     
