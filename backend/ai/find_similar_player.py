@@ -2,7 +2,6 @@ from deepface import DeepFace
 import numpy as np
 import tempfile
 import cv2
-import os
 
 
 def find_similar_player(img):
