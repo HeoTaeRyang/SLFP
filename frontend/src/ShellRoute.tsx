@@ -6,7 +6,8 @@ import Register from "./components/Register";
 import FreePost from './components/FreePost'; // 글 목록 페이지
 import FreeWriting from './components/FreeWriting'; // 글 작성 페이지
 import FreeLook from './components/FreeLook'; // 글 상세 페이지
-import FindLike from './components/Findlike';
+import FindLike from './components/Findlike';//닮은꼴 찾기
+import GameLast from './components/GameLast';//경기 결과
 
 
 // ShellRoute 컴포넌트: 네비게이션 바와 콘텐츠를 공통 레이아웃으로 설정
@@ -48,6 +49,15 @@ function App() {
         element={
           <ShellRoute>
             <FindLike />
+          </ShellRoute>
+        }
+      />
+
+<Route
+        path="/gamelast"
+        element={
+          <ShellRoute>
+            <GameLast />
           </ShellRoute>
         }
       />
