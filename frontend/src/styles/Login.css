@@ -1,37 +1,37 @@
 .login-page {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* 수평으로 두 영역을 나누어 배치 */
+  justify-content: space-between;
   height: 100vh;
   padding: 0 20px;
   background-color: #f5f5f5;
 }
 
 .image-container {
-  width: 50%; /* 화면의 50%를 차지 */
-  display: flex; /* 플렉스를 사용하여 중앙 배치 */
-  justify-content: center; /* 수평 중앙 정렬 */
-  align-items: center; /* 수직 중앙 정렬 */
-  background-color: #ffffff; /* 배경을 흰색으로 설정 */
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
 }
 
 .image-container img {
-  width: 80%; /* 이미지가 container를 꽉 채우도록 설정 */
+  width: 80%;
   height: auto;
 }
 
 .login-container {
-  width: 50%; /* 화면의 50%를 차지 */
-  min-height: 100%; /* 최소 높이를 80%로 설정 */
-  margin: 0; /* 기존 margin 제거 */
-  padding: 40px 20px; /* 여유를 주기 위해 패딩을 늘림 */
+  width: 50%;
+  min-height: 100%;
+  margin: 0;
+  padding: 40px 20px;
   background-color: #ffffff;
   text-align: center;
   font-family: Arial, sans-serif;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* 수직 중앙 정렬 */
-  align-items: center; /* 수평 중앙 정렬 */
+  justify-content: center;
+  align-items: center;
 }
 
 .login-container h1 {
@@ -46,7 +46,7 @@
   align-items: center;
   border-radius: 10px;
   border: 1px solid #767676;
-  padding: 60px 50px; /* 폼 내부에 여유를 주기 위한 패딩 */
+  padding: 60px 50px;
 }
 
 .login-container form {
@@ -56,16 +56,16 @@
 
 .login-container input {
   margin: 10px 0;
-  padding: 12px 120px; /* 입력란 크기를 조금 더 크게 */
+  padding: 12px 120px;
   font-size: 16px;
   border: 1px solid #767676;
   border-radius: 10px;
-  color: #bab6b6; /* 아이디, 비밀번호 글씨 색상 */
+  color: #bab6b6;
 }
 
 .login-container button {
   margin-top: 50px;
-  padding: 12px; /* 버튼 크기를 조금 더 키움 */
+  padding: 12px;
   font-size: 24px;
   color: #fff;
   background-color: #33aaff;

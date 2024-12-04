@@ -21,7 +21,6 @@ const Register: React.FC = () => {
     e.preventDefault();
     setError('');
 
-    // 비밀번호와 비밀번호 확인이 일치하는지 확인
     if (formData.password !== formData.confirmPassword) {
       setError('비밀번호가 일치하지 않습니다.');
       return;
