@@ -25,7 +25,6 @@ const FreeLook = ({ postId }: { postId: number }) => {
   const handleCommentSubmit = async () => {
       try {
           const requestData = {
-            postType: "Post",
             postNumber: postId,
             content: comment,
             id: localStorage.getItem('userid'),
@@ -37,9 +36,7 @@ const FreeLook = ({ postId }: { postId: number }) => {
               { headers: { 'Content-Type': 'application/json' } }
           );
           alert(response.data.answer);
-          // 댓글 추가 후 상태 갱신
-          setComments([...comments, response.data.newComment]);
-          setComment(''); // 댓글 입력창 초기화
+          window.location.reload();
       } catch (e) {
           console.error('error:', e);
       }

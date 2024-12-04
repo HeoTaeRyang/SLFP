@@ -54,6 +54,106 @@ def get_PostPages():
     except Exception as e:
         # 예외 처리: 에러 메시지를 클라이언트에 반환
         return jsonify({'error': str(e)}), 500
+    
+#자유게시판 작성
+@app.route('/post', methods=['POST'])
+def add_post():
+    try:
+        data = request.get_json()
+        title = data.get('title', '')
+        content = data.get('content', '')
+        id = data.get('id', '')
+        now = dt.now()
+        datetime = now.strftime("%Y-%m-%d %H:%M:%S")
+        post.add_post(title,id,datetime,content)
+        res = "글 작성이 완료되었습니다"
+        
+        response = {
+            'answer': res,
+        }
+        
+        # 결과를 JSON 형식으로 반환
+        return jsonify(response)
+    except Exception as e:
+        # 예외 처리: 에러 메시지를 클라이언트에 반환
+        return jsonify({'error': str(e)}), 500
+    
+#자유게시판 게시글 조회
+@app.route('/postLook', methods=['POST'])
+def get_post():
+    try:
+        data = request.get_json()
+        number = data.get('postNumber', '')
+        
+        post.add_views_post(number)
+        tmp_post = post.get_content_post(number)
+        tmp1 = comment.get_comment(number)
+        recommends = recommend.get_recommend_num(number)
+        comments = []
+
+        free_post = {'title':tmp_post[0], 'id':tmp_post[1], 'datetime':tmp_post[2], 'views':tmp_post[3],'recommends':recommends, 'content':tmp_post[4]}
+
+        for i in tmp1:
+            tmp2 = {'id':i[0], 'datetime':i[1], 'content':i[2]}
+            comments.append(tmp2)
+
+        response = {
+            'post' : free_post,
+            'comments' : comments,
+        }
+        
+        # 결과를 JSON 형식으로 반환
+        return jsonify(response)        
+    except Exception as e:
+        # 예외 처리: 에러 메시지를 클라이언트에 반환
+        return jsonify({'error': str(e)}), 500 
+    
+#자유게시판 추천 기능
+@app.route('/recommend', methods=['POST'])
+def add_recommend():
+    try:
+        data = request.get_json()
+        id = data.get('id','')
+        number = data.get('postNumber', '')
+
+        if(recommend.get_recommend(id,number)):
+            res = "이미 추천했습니다."
+        else:
+            recommend.add_recommend(id,number)
+            res = "추천했습니다"
+        
+        response = {
+            'answer': res,
+        }
+        
+        # 결과를 JSON 형식으로 반환
+        return jsonify(response)
+    except Exception as e:
+        # 예외 처리: 에러 메시지를 클라이언트에 반환
+        return jsonify({'error': str(e)}), 500
+
+#자유게시판 댓글 기능
+@app.route('/comment', methods=['POST'])
+def add_comment():
+    try:
+        data = request.get_json()
+        number = data.get('postNumber','')
+        content = data.get('content', '')
+        id = data.get('id', '')
+        now = dt.now()
+        datetime = now.strftime("%Y-%m-%d %H:%M:%S")
+        comment.add_comment(number,id,datetime,content)
+        res = "댓글 작성이 완료되었습니다"
+        
+        response = {
+            'answer': res,
+        }
+        
+        # 결과를 JSON 형식으로 반환
+        return jsonify(response)
+    except Exception as e:
+        # 예외 처리: 에러 메시지를 클라이언트에 반환
+        return jsonify({'error': str(e)}), 500
 
 #닮은 선수 찾기
 @app.route('/findLike', methods=['POST'])

@@ -54,13 +54,13 @@ const Findlike: React.FC = () => {
 
         {/* 사진 업로드 박스 */}
         <div className="upload-box">
-          <input
+          { !loading && <input
             type="file"
             accept="image/*"
             onChange={handleImageChange}
             id="file-input"
             className="file-input"
-          />
+          />}
 
           {/* 미리보기 이미지 */}
           {image && (
