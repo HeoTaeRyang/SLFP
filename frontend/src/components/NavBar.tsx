@@ -89,10 +89,9 @@ const NavBar: React.FC = () => {
               <span className="navbt3">
                 {userId ? `${userId}님` : "사용자님"}
               </span>
-              <button onClick={handleLogout} className="navbt4">
+              <a onClick={handleLogout} className="navbt4">
                 로그아웃
-              </button>
-              <div className="navbt4">____ </div>
+              </a>
             </>
           ) : (
             <>

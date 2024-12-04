@@ -1,4 +1,3 @@
-// Login.tsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Login.css';
@@ -40,29 +39,36 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="login-container">
-      <h1>로그인</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="id"
-          placeholder="아이디"
-          value={formData.id}
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="비밀번호"
-          value={formData.password}
-          onChange={handleChange}
-        />
-        {error && <p className="error">{error}</p>}
-        <button type="submit">로그인</button>
-      </form>
-      <p>
-        계정이 없으신가요? <a href="/register">회원가입</a>
-      </p>
+    <div className="login-page">
+      <div className="image-container">
+        <img src="login.png" alt="Login Illustration" />
+      </div>
+      <div className="login-container">
+        <h1>로그인</h1>
+        <div className="form-wrapper">
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="id"
+              placeholder="아이디"
+              value={formData.id}
+              onChange={handleChange}
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="비밀번호"
+              value={formData.password}
+              onChange={handleChange}
+            />
+            {error && <p className="error">{error}</p>}
+            <button type="submit">SIGN IN</button>
+          </form>
+          <p>
+            <a href="/register">회원가입</a>
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
