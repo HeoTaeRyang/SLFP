@@ -34,38 +34,41 @@ const FreeWriting = () => {
   return (
     <div className="free-container">
       <div className="free-box">
-        <div className="box-text">자유게시판</div>
-        <img src="/free-image.png" alt="free" />
+        <div className="box-text">새 게시글 작성</div>
         <div className="free-container-underbox"></div>
       </div>
-      <div className="free-line"></div>
-      <form onSubmit={handleSubmit}>
-        {/* 제목 입력란 */}
-        <div className="free-title-box">
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="제목에 핵심 내용을 요약해봐요."
-            className="free-title-input"
-            required
-          />
-        </div>
-        {/* 본문 입력란 */}
-        <div className="free-text-box">
-          <textarea
-            value={text} // text로 수정
-            onChange={(e) => setText(e.target.value)}
-            className="free-text-input"
-            placeholder="내용을 입력하세요"
-            required
-          />
-        </div>
-        {/* 제출 버튼 */}
-        <button type="submit" className="ask-button">
-          작성 완료
-        </button>
-      </form>
+      <div className="free-write-box">
+  <form onSubmit={handleSubmit}>
+    {/* 제목 입력란 */}
+    <div className="free-title-box">
+      <textarea
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="제목에 핵심 내용을 요약해봐요."
+        className="free-title-input"
+        rows={2} // 제목의 높이를 제한
+        required
+      />
+    </div>
+    <div className="free-line"></div>
+    {/* 본문 입력란 */}
+    <div className="free-text-box">
+      <textarea
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        className="free-text-input"
+        placeholder="내용을 입력하세요"
+        rows={20} // 본문 기본 높이
+        required
+      />
+    </div>
+    {/* 제출 버튼 */}
+    <button type="submit" className="ask-button">
+      작성 완료
+    </button>
+  </form>
+</div>
+
     </div>
   );
 };

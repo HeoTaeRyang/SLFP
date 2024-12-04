@@ -12,7 +12,7 @@ type FreePostBoxProps = {
 
 const FreePostBox: React.FC<FreePostBoxProps> = ({ postId, title, author, date, views}) => {
   return (      
-    <div className="free-post-box">
+    <div className="free-post-box-0">
       <div className="free-post-No">{postId}</div>
       <div className="free-post-box-title">
         <Link to={`/free/${postId}`} className="free-post-link">
@@ -22,7 +22,7 @@ const FreePostBox: React.FC<FreePostBoxProps> = ({ postId, title, author, date, 
         <div className="free-post-user">{author}</div>
         <div className="free-post-time">{date}</div>
         <div className="free-post-watch">{views}</div>
-       </div>
+    </div>
   );
 };
 
