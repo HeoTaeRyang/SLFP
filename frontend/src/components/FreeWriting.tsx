@@ -60,15 +60,20 @@ const FreeWriting = () => {
         placeholder="내용을 입력하세요"
         rows={20} // 본문 기본 높이
         required
-      />
-    </div>
-    {/* 제출 버튼 */}
-    <button type="submit" className="ask-button">
-      작성 완료
-    </button>
-  </form>
-</div>
-
+        />
+       </div>
+      {/* 제출 버튼 */}
+      <button type="submit" className="ask-button">
+        작성 완료
+      </button>
+   </form>
+  </div>
+      {/* 글 작성 버튼 */}
+      <button className="to-list-button">
+        <a href="/free/post" className="write-button-link">
+          목록으로
+        </a>
+      </button>
     </div>
   );
 };

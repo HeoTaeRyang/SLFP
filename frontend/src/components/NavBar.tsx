@@ -59,7 +59,7 @@ const NavBar: React.FC = () => {
             </a>
             {hoveredMenu === "경기 정보" && (
               <div className="dropdown-menu">
-                <a href="/schedule">경기 일정</a>
+                <a href="/d">경기 일정</a>
                 <a href="/gamelast">경기 결과</a>
                 <a href="/rankings">순위</a>
               </div>
@@ -92,7 +92,7 @@ const NavBar: React.FC = () => {
               <button onClick={handleLogout} className="navbt4">
                 로그아웃
               </button>
-              <div className="navbt4">____ </div>
+              <div className="navbt4">_____ </div>
             </>
           ) : (
             <>
@@ -102,6 +102,7 @@ const NavBar: React.FC = () => {
               <a href="/register" className="navbt5">
                 회원가입
               </a>
+              <div className="navbt4">______ </div>
             </>
           )}
         </div>

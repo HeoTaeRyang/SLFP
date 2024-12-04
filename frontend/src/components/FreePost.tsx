@@ -46,15 +46,6 @@ const FreePost = () => {
     <div className="free-post-container">
      <div className="free-box">
       <div className="box-text">게시판</div>
-      <div className="free-container-underbox"></div>
-      </div>
-      <div className="free-post-list">
-        <div className="free-text-1">No</div>
-        <div className="free-text-2">제목</div>
-        <div className="free-text-3">닉네임</div>
-        <div className="free-text-4">작성시간</div>
-        <div className="free-text-5">조회수</div>
-      </div>
       {/* 정렬 버튼 */}
       <div className="free-post-sort-array">
         <button
@@ -70,6 +61,17 @@ const FreePost = () => {
           조회순
         </button>
       </div>
+      <div className="free-container-underbox"></div>
+     </div>
+      <div className="free-post-list">
+        <div className="free-text-1">No</div>
+        <div className="free-text-2">제목</div>
+        <div className="free-text-3">닉네임</div>
+        <div className="free-text-4">작성시간</div>
+        <div className="free-text-5">조회수</div>
+      </div>
+      <div className="free-container-underbox-0"></div>
+    
 
       {/* 게시글 목록 */}
       {posts.map((post) => (
@@ -81,6 +83,14 @@ const FreePost = () => {
           views={post.views}
         />
       ))}
+
+      {/* 글 작성 버튼 */}
+      <button className="free-send-button">
+        <a href="/free/writing" className="write-button-link">
+          글 작성하기
+        </a>
+      </button>
+
 
       {/* 페이징 버튼 */}
       <div className="pagination">
@@ -95,12 +105,7 @@ const FreePost = () => {
         ))}
       </div>
 
-      {/* 글 작성 버튼 */}
-      <button className="free-send-button">
-        <a href="/free/writing" className="write-button-link">
-          글 작성하기
-        </a>
-      </button>
+      
     </div>
   );
 };

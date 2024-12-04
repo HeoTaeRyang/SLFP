@@ -21,7 +21,7 @@
   display: flex;
   justify-content: center;  /* 항목을 가로로 중앙 정렬 */
   align-items: center;  /* 항목을 세로로 중앙 정렬 */
-  height: 140px;
+  height: 180px;
   width: 100%;
 }
 
