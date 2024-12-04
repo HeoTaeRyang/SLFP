@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/Home.css';
 
 const Home: React.FC = () => {
@@ -39,18 +40,26 @@ const Home: React.FC = () => {
           </div>
 
           <div className="main-news-box">
-          <h2 className="main-news-title">NEWS</h2>
-          <div className="main-news-text1">
-          15일 대구 삼성라이온즈파크에서 열린 2024 신한 SOL ...</div>
-          <button className="main-news-read-button1">Read more</button>
-          <div className="main-news-line"></div>
-          <div className="main-news-text2">
-          가을도 지배한 삼성의 ‘영웅 스윙’ [IS 스타]</div>
-          <button className="main-news-read-button2">Read more</button>
-          <button className="main-news-read-all-button">Read all news</button>
-          <img className="main-news-pic1" src="main-news-pic1.png" alt="News Thumbnail" />
-          <img className="main-news-pic2" src="main-news-pic2.png" alt="Another Thumbnail" />
-        </div>
+            <h2 className="main-news-title">NEWS</h2>
+            <div className="main-news-text1">
+              15일 대구 삼성라이온즈파크에서 열린 2024 신한 SOL ...
+            </div>
+            <button className="main-news-read-button1">Read more</button>
+            <div className="main-news-line"></div>
+            <div className="main-news-text2">
+              가을도 지배한 삼성의 ‘영웅 스윙’ [IS 스타]
+            </div>
+            <button className="main-news-read-button2">Read more</button>
+            <button className="main-news-read-all-button">Read all news</button>
+            <img className="main-news-pic1" src="main-news-pic1.png" alt="News Thumbnail" />
+            <img className="main-news-pic2" src="main-news-pic2.png" alt="Another Thumbnail" />
+          </div>
+
+          <div className="player-game-box">
+            <Link to="/player-game" className="player-game-link">
+              선수 이미지 맞추기 게임 시작하기
+            </Link>
+          </div>
         </main>
 
         <footer className="footer">
