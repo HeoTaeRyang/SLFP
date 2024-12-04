@@ -59,9 +59,9 @@ const NavBar: React.FC = () => {
             </a>
             {hoveredMenu === "경기 정보" && (
               <div className="dropdown-menu">
-                <a href="/d">경기 일정</a>
+                <a href="/gamenext">경기 일정</a>
                 <a href="/gamelast">경기 결과</a>
-                <a href="/rankings">순위</a>
+                <a href="/gameranking">순위</a>
               </div>
             )}
           </div>

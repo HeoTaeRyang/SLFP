@@ -89,28 +89,26 @@ const FreeLook = ({ postId }: { postId: number }) => {
   }, [postId]);
 
   return (
-    <div className="free-look-container">
+    <div className="aiask-look-container">
       {post ? (
         <>
-          <div className="free-line"></div>
-          <div className="free-post-title">{post.title}</div>
-          <div className="free-line1"></div>
-          <div className="free-post-info">
-            <div className="circle-box"></div>
-            <span> {post.id}</span>
+          <div className="aiask-line"></div>
+          <div className="aiask-post-title">{post.title}</div>
+          <div className="aiask-line1"></div>
+          <div className="aiask-post-info">
+            <span>글쓴이 {post.id}</span>
             <span>작성일 {post.datetime}</span>
             <span>추천수 {post.recommends}</span>
             <span>조회수 {post.views}</span>
           </div>
-          <div className="free-line1"></div>
-          <div className="free-post-content">{post.content}</div>
-          <div className="free-line3"></div>
+          <div className="aiask-line1"></div>
+          <div className="aiask-post-content">{post.content}</div>
+          <div className="aiask-line3"></div>
 
-          <div className="recommend-container">
-          <button onClick={handleRecommend} className="recommend-button">
-          <img src="/like.png" alt="like" className="recommend-icon" />
+
+          <button onClick={handleRecommend}>
+            추천하기
           </button>
-          </div>
 
           <div className="comments-section-0">
             <div className="comments-title">댓글</div>

@@ -8,6 +8,7 @@ import FreeWriting from './components/FreeWriting'; // 글 작성 페이지
 import FreeLook from './components/FreeLook'; // 글 상세 페이지
 import FindLike from './components/Findlike';//닮은꼴 찾기
 import GameLast from './components/GameLast';//경기 결과
+import GameRanking from './components/GameRanking';//순위
 
 
 // ShellRoute 컴포넌트: 네비게이션 바와 콘텐츠를 공통 레이아웃으로 설정
@@ -58,6 +59,15 @@ function App() {
         element={
           <ShellRoute>
             <GameLast />
+          </ShellRoute>
+        }
+      />
+
+<Route
+        path="/gameranking"
+        element={
+          <ShellRoute>
+            <GameRanking />
           </ShellRoute>
         }
       />

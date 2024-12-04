@@ -1,0 +1,56 @@
+/* 기본 스타일 */
+.ranking-container {
+    padding: 20px;
+    text-align: center;
+    margin-bottom:100px;
+  }
+  
+  .ranking-table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    font-size: 16px;
+  }
+  
+  .ranking-table th,
+  .ranking-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  /* 순위 색상 */
+  .gold td {
+    background-color: rgb(113, 155, 255);
+    color: black;
+  }
+  
+  .silver td {
+    background-color: rgb(131, 195, 255);
+    color: black;
+  }
+  
+  .bronze td {
+    background-color: #a9d7ff; /* 동메달 색상 */
+    color: black;
+  }
+  
+  /* 강조 스타일 */
+  .highlight {
+    color: red;
+    font-weight: bold;
+  }
+  
+  /* 테이블 헤더 */
+  .ranking-table th {
+    background-color: #f4f4f4;
+    color: #333;
+    font-weight: bold;
+  }
+
+  .ranking-container h1 {
+    margin-top: 80px;
+    margin-bottom:40px;
+    color: #333; /* 제목 색상 (필요 시) */
+  }
+  
