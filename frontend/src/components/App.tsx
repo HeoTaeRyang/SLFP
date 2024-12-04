@@ -11,6 +11,7 @@ import FreeWriting from "./FreeWriting"; // Free 글 작성 페이지
 import FreeLook from "./FreeLook"; // Free 글 상세 페이지
 import GameLast from './GameLast';//경기 결과
 import GameRanking from './GameRanking';//순위
+import PlayerImageGame from './components/PlayerImageGame';
 
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
        <Route path="/free/post" element={<FreePost />} />
         <Route path="/free/writing" element={<FreeWriting />} />
         <Route path="/free/:id" element={<FreeLookWithParams />} />
-
+        <Route path="/player-game" element={<PlayerImageGame />} />
       </Route>
     </Routes>
   );
