@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/NavBar.css";
-import axios from "axios";
 
 const NavBar: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
+  const [hoveredMenu, setHoveredMenu] = useState<string | null>(null); // 호버 상태 추가
   const navigate = useNavigate();
 
   // 로컬 스토리지를 확인하여 로그인 상태와 사용자 아이디 업데이트
@@ -25,62 +25,91 @@ const NavBar: React.FC = () => {
     navigate("/login");
   };
 
-  // 출석 핸들러
-  const handleAttendance = async () => {
-    try {
-        const requestData = {
-            id: localStorage.getItem('userId'),
-        };
-
-        const response = await axios.post(
-            'http://localhost:5000/attendence',
-            requestData,
-            { headers: { 'Content-Type': 'application/json' } }
-        );
-        alert(response.data.answer);
-    } catch (e) {
-        console.error('error:', e);
-    }
-  }
+  // 메뉴 호버 핸들러
+  const handleMouseEnter = (menu: string) => setHoveredMenu(menu);
+  const handleMouseLeave = () => setHoveredMenu(null);
 
   return (
     <nav className="navbar">
       <div className="nav-bar-top">
         <div className="nav-con">
-          <a href="/" className="navbt0">선수단</a>
-          <a href="/" className="navbt1">경기 정보</a>
-          <a href="/" className="navbt2">커뮤니티</a>
-          <a href="/" className="navbt6">SAMSUNG LIONS</a>
+          <div
+            className="nav-item"
+            onMouseEnter={() => handleMouseEnter("선수단")}
+            onMouseLeave={handleMouseLeave}
+          >
+            <a href="/" className="navbt0">
+              선수단
+            </a>
+            {hoveredMenu === "선수단" && (
+              <div className="dropdown-menu">
+                <a href="/players/coaches">코칭 스태프</a>
+                <a href="/players/pitchers">투수</a>
+                <a href="/players/batters">타자</a>
+              </div>
+            )}
+          </div>
+          <div
+            className="nav-item"
+            onMouseEnter={() => handleMouseEnter("경기 정보")}
+            onMouseLeave={handleMouseLeave}
+          >
+            <a href="/" className="navbt1">
+              경기 정보
+            </a>
+            {hoveredMenu === "경기 정보" && (
+              <div className="dropdown-menu">
+                <a href="/schedule">경기 일정</a>
+                <a href="/results">경기 결과</a>
+                <a href="/rankings">순위</a>
+              </div>
+            )}
+          </div>
+          <div
+            className="nav-item"
+            onMouseEnter={() => handleMouseEnter("커뮤니티")}
+            onMouseLeave={handleMouseLeave}
+          >
+            <a href="/free/post" className="navbt2">
+              커뮤니티
+            </a>
+            {hoveredMenu === "커뮤니티" && (
+              <div className="dropdown-menu">
+                <a href="/free/post">자유 게시판</a>
+                <a href="/findplayer">선수이미지 맞추기</a>
+                <a href="/findlike">닮은꼴 선수 찾기</a>
+              </div>
+            )}
+          </div>
+          <a href="/" className="navbt6">
+            SAMSUNG LIONS
+          </a>
           {isLoggedIn ? (
             <>
-              <span className="navbt3">{userId ? `${userId}님` : "사용자님"}</span>
-              <button onClick={handleAttendance} className="navbt4">
-                출석
-              </button>
+              <span className="navbt3">
+                {userId ? `${userId}님` : "사용자님"}
+              </span>
               <button onClick={handleLogout} className="navbt4">
                 로그아웃
               </button>
+              <div className="navbt4">____ </div>
             </>
           ) : (
             <>
-              <a href="/login" className="navbt3">로그인</a>
-              <a href="/register" className="navbt5">회원가입</a>
+              <a href="/login" className="navbt3">
+                로그인
+              </a>
+              <a href="/register" className="navbt5">
+                회원가입
+              </a>
             </>
           )}
         </div>
-      </div>
-      <div className="nav-bar-down">
-        <div className="nav-con">
-          <a href="/" className="navbt7">감독</a>
-          <a href="/" className="navbt8">코칭 스텝</a>
-          <a href="/" className="navbt9">투수</a>
-          <a href="/" className="navbt10">타자</a>
-          <a href="/admin" className="navbt10">관리자</a>
-          <a href="/findlike" className="navbt10">닮은 선수 찾기</a>
-        </div>
+       
       </div>
     </nav>
   );
 };
 
 export default NavBar;
+

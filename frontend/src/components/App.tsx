@@ -1,12 +1,22 @@
-import { Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { Route, Routes, Navigate, useParams } from "react-router-dom"; // useParams 추가
 import Home from "./Home";
 import ShellRoute from "../ShellRoute";
 import Admin from "./Admin";
 import Findlike from "./Findlike";
 import Login from "./Login";
 import Register from "./Register";
+import FreePost from "./FreePost"; // Free 글 목록 페이지
+import FreeWriting from "./FreeWriting"; // Free 글 작성 페이지
+import FreeLook from "./FreeLook"; // Free 글 상세 페이지
 
 function App() {
+  const isLoggedIn = !!localStorage.getItem('userid');
+
+  useEffect(() => {
+    document.title = "SLFP"; // 모든 페이지에서 동일한 제목 설정
+  }, []);
+
   return (
     <Routes>
       {/* 로그인, 회원가입 페이지는 네비게이션 바가 없음 */}
@@ -18,9 +28,23 @@ function App() {
       <Route element={<ShellRoute />}>
         <Route path="/" element={<Home />} />
         <Route path="/findlike" element={<Findlike />} />
+
+       {/* Free 관련 라우트 */}
+       <Route path="/free/post" element={<FreePost />} />
+        <Route path="/free/writing" element={<FreeWriting />} />
+        <Route path="/free/:id" element={<FreeLookWithParams />} />
+
       </Route>
     </Routes>
   );
+}
+
+// FreeLookWithParams 컴포넌트: URL에서 id 값을 받아 FreeLook에 전달
+const FreeLookWithParams = () => {
+  const { id } = useParams<{ id: string }>(); // URL에서 id 추출
+  const postId = parseInt(id || "0", 10); // id를 숫자로 변환
+
+  return <FreeLook postId={postId} />; // postId를 FreeLook에 전달
 }
 
 export default App;
