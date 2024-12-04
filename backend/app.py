@@ -98,7 +98,6 @@ def get_PostPages():
         for i in tmp1:
             comment_num = comment.get_comment_num(i[0])
             recommend_num = recommend.get_recommend_num(i[0])
-            print(comment_num,recommend_num)
             tmp2 = {'id':i[0], 'title':i[1], 'user':i[2],'time':i[3],'views':i[4],'comments':comment_num, 'recommends':recommend_num}
             pages.append(tmp2)
         response = {
@@ -323,9 +322,7 @@ def attendence():
         
         now = dt.now()
         date = now.strftime("%Y-%m-%d")
-
-        print(id,date)
-        print(user.get_last_login(id))
+        
         if(user.get_last_login(id) != date):
             user.set_last_login(id,date)
             user.add_point(id,100)
