@@ -13,6 +13,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from backend.db import user
 from backend.db import player
 from backend.db import post
+from backend.db import comment
+from backend.db import recommend
 
 from ai import find_similar_player
 
@@ -21,37 +23,37 @@ CORS(app)  # 모든 도메인에서 오는 요청을 허용
 
 IMAGE_FOLDER = "./db/players"
 
-#자유게시판 페이지별 조회
-# @app.route('/postPages', methods=['POST'])
-# def get_PostPages():
-#     try:
-#         data = request.get_json()
-#         number = data.get('pageNumber', '')
-#         sortMethod = data.get('sortMethod', '')
-#         key = data.get('searchKey', '')
+# 자유게시판 페이지별 조회
+@app.route('/postPages', methods=['POST'])
+def get_PostPages():
+    try:
+        data = request.get_json()
+        number = data.get('pageNumber', '')
+        sortMethod = data.get('sortMethod', '')
+        # key = data.get('searchKey', '')
         
-#         totalPages = post.get_max_page()
-#         pages = []
-#         if sortMethod == 0:
-#             tmp1 = post.get_page_post_date(number)
-#         else:
-#             tmp1 = post.get_page_post_views(number)
-#         for i in tmp1:
-#             comment_num = comment.get_comment_num("Post",i[0])
-#             recommend_num = recommend.get_recommend_num(i[0])
-#             tmp2 = {'id':i[0], 'title':i[1], 'user':i[2],'time':i[3],'views':i[4],'comments':comment_num, 'recommends':recommend_num}
-#             pages.append(tmp2)
-
-#         response = {
-#             'totalPages' : totalPages,
-#             'Pages' : pages
-#         }
+        totalPages = post.get_max_page()
+        pages = []
+        if sortMethod == 0:
+            tmp1 = post.get_page_post_date(number)
+        else:
+            tmp1 = post.get_page_post_views(number)
+        for i in tmp1:
+            comment_num = comment.get_comment_num(i[0])
+            recommend_num = recommend.get_recommend_num(i[0])
+            print(comment_num,recommend_num)
+            tmp2 = {'id':i[0], 'title':i[1], 'user':i[2],'time':i[3],'views':i[4],'comments':comment_num, 'recommends':recommend_num}
+            pages.append(tmp2)
+        response = {
+            'totalPages' : totalPages,
+            'Pages' : pages
+        }
         
-#         # 결과를 JSON 형식으로 반환
-#         return jsonify(response)        
-#     except Exception as e:
-#         # 예외 처리: 에러 메시지를 클라이언트에 반환
-#         return jsonify({'error': str(e)}), 500
+        # 결과를 JSON 형식으로 반환
+        return jsonify(response)        
+    except Exception as e:
+        # 예외 처리: 에러 메시지를 클라이언트에 반환
+        return jsonify({'error': str(e)}), 500
 
 #닮은 선수 찾기
 @app.route('/findLike', methods=['POST'])
