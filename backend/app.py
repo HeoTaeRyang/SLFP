@@ -34,7 +34,7 @@ def get_gameResultMonth():
         games = []
         tmp1 = game.get_game_month(year,month)
         for i in tmp1:
-            tmp2 = {'date':i[1], 'time':i[2], 'stadium':i[3],'status':i[4],'home_team':i[5],'away_team':i[6],'home_result':i[7],'home_score':i[8],'away_score':i[9],'home_pitcher':i[10], 'away_pitcher':i[11]}
+            tmp2 = {'day':i[1].split()[1][:-1], 'time':i[2], 'stadium':i[3],'status':i[4],'home_team':i[5],'away_team':i[6],'home_result':i[7],'home_score':i[8],'away_score':i[9],'home_pitcher':i[10], 'away_pitcher':i[11]}
             games.append(tmp2)
         response = {
             'games' : games,
@@ -342,3 +342,4 @@ def attendence():
     
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
+    
