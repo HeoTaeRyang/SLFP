@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import PlayerImageCard from '../components/PlayerImageCard';
-import AnswerInput from '../components/AnswerInput';
+import axios from 'axios';
+import PlayerImageCard from './PlayerImageCard';
+import AnswerInput from './AnswerInput';
 
 interface Player {
     id: number;
@@ -14,14 +15,21 @@ const PlayerImageGame: React.FC = () => {
     const [score, setScore] = useState<number>(0);
 
     useEffect(() => {
-        const samplePlayers: Player[] = [
-            { id: 1, name: 'Son Heung-min', imageUrl: '/images/son_heung_min.jpg' },
-            { id: 2, name: 'Cristiano Ronaldo', imageUrl: '/images/cristiano_ronaldo.jpg' },
-        ];
-        setPlayers(samplePlayers);
+        // 백엔드 API에서 선수 데이터를 가져옴
+        const fetchPlayers = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/api/players');
+                setPlayers(response.data);
+            } catch (error) {
+                console.error('Error fetching players data:', error);
+            }
+        };
+        fetchPlayers();
     }, []);
 
     const handleAnswerSubmit = (answer: string) => {
+        if (players.length === 0) return;
+
         if (answer.toLowerCase() === players[currentPlayerIndex].name.toLowerCase()) {
             setScore(score + 1);
             alert('정답입니다!');
