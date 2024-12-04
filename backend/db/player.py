@@ -19,3 +19,8 @@ def get_players(roll):
     cursor = con.cursor()
     cursor.execute(f"SELECT name,number from Player WHERE roll = '{roll}';")
     return cursor.fetchall()
+
+def get_player_info(type):
+    cursor = con.cursor()
+    cursor.execute(f"SELECT name,number,roll FROM Player WHERE type = '{type}';")
+    return cursor.fetchall()
