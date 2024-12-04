@@ -26,7 +26,6 @@ html, body, content {
     align-items: center; /* 자식 요소를 가로 중앙 정렬 */
     justify-content: center; /* 세로 중앙 정렬 */
     width: 100vw;
-    height: 320px;
   }
   
   .free-box img {
@@ -36,9 +35,16 @@ html, body, content {
   
   .free-container-underbox {
     display: flex; 
-    height: 4px;
-    width: 1200px;
+    height: 2px;
+    width: 1400px;
     background-color: rgb(132, 132, 132);
+  }
+
+  .free-container-underbox-0 {
+    display: flex; 
+    height: 1px;
+    width: 1400px;
+    background-color: rgb(208, 208, 208);
   }
   
 
@@ -46,7 +52,7 @@ html, body, content {
     color: #000000;
     text-align: center;
     font-family: "NexonLv1Gothic-Bold", sans-serif;
-    font-size: 24px;
+    font-size: 30px;
     line-height: 42px;
     letter-spacing: 0.05em;
     font-weight:600;
@@ -54,7 +60,7 @@ html, body, content {
     text-decoration: underline;
     text-decoration-thickness: 1px; /* 밑줄 두께 설정 */
     margin-top:125px; 
-    margin-bottom:125px;
+    margin-bottom:75px;
 
   }
   .free-post-sort-array{
@@ -63,9 +69,12 @@ html, body, content {
     font-size: 18px;
     font-weight: 400;
     position: relative;
-    left:300px;
+    left:400px;
     margin-bottom: 50px;
-    margin-top:70px;
+    margin-top:0px;
+    display: flex; /* Flexbox를 활성화 */
+    justify-content: space-between; /* 요소 간의 공간 조정 */
+    gap: 10px; /* 요소 간격 설정 */
   }
   
   
@@ -82,7 +91,8 @@ html, body, content {
   .pagination {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
   
   .pagination button {
@@ -93,6 +103,7 @@ html, body, content {
     background-color: #888888; /* 기본 회색 배경 */
     color: rgb(133, 133, 133);
     border-radius: 5px;
+    font-size:18px;
   }
   
   .pagination button.active {
@@ -116,12 +127,13 @@ html, body, content {
     font-size: 16px; /* 글자 크기 */
     cursor: pointer; /* 마우스를 올리면 포인터 커서 표시 */
     transition: background-color 0.3s ease; /* 부드러운 색상 변화 */
-    margin-left:550px;
+    margin-left:1000px;
     width:200px;
-  }
-  .free-send-button{
     text-decoration: none; /* 텍스트에 밑줄을 없애기 */
+    margin-top:50px;
+    margin-bottom:50px;
   }
+
   /* 버튼 hover 효과 */
   .free-send-button:hover {
     background-color: #0056b3; /* 더 어두운 파란색 */
@@ -153,29 +165,38 @@ html, body, content {
 
 
 .free-post-list{
-  display: flex; /* 가로 정렬 */
-  height:50px;
-  font-size: 22px;
-  line-height: 42px;
-  letter-spacing: 0.05em;
-  font-weight: 700;
+    display: flex; /* 가로 정렬 */
+    justify-content: flex-start; /* 좌측부터 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+    height: 50px;
+    font-size: 18px;
+    line-height: 42px;
+    letter-spacing: 0.05em;
+    font-weight: 700;
 }
 
 .free-text-1{
-    width:340px;
+    width:180px;
+    text-align: center; /* 텍스트를 수평 중앙 정렬 */
+    transform: translateX(-10px); /* 왼쪽으로 살짝 이동 */
+
 }
 .free-text-2{
-    width:360px;
+    width:520px;
+    text-align: center; /* 텍스트를 수평 중앙 정렬 */
 }
 .free-text-3{
-    width:210px;
+    width:110px;
+    text-align: center; /* 텍스트를 수평 중앙 정렬 */
 }
 
 .free-text-4{
-    width:170px;
+    width:400px;
+    text-align: center; /* 텍스트를 수평 중앙 정렬 */
     
 }
 .free-text-5{
-    width:100px;
+    width:90px;
+    text-align: center; /* 텍스트를 수평 중앙 정렬 */
 }
   
