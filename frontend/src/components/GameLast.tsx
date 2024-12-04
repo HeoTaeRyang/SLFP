@@ -75,7 +75,10 @@ const GameLast = () => {
 
   return (
     <div className="calendar-container">
+      <div className="cal-title">
       <h1>경기 일정</h1>
+      </div>
+      <div className="free-container-underbox-1"></div>
 
       {/* 달 변경 버튼 */}
       <div className="month-change-btns">
@@ -87,13 +90,13 @@ const GameLast = () => {
       {/* 달력 */}
       <div className="calendar">
         <div className="calendar-header">
-          <div>일</div>
-          <div>월</div>
-          <div>화</div>
-          <div>수</div>
-          <div>목</div>
-          <div>금</div>
-          <div>토</div>
+          <div>SUN</div>
+          <div>MON</div>
+          <div>TUE</div>
+          <div>WED</div>
+          <div>THU</div>
+          <div>FRI</div>
+          <div>SAT</div>
         </div>
 
         <div className="calendar-body">

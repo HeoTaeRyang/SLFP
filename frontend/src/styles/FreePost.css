@@ -169,7 +169,7 @@ html, body, content {
     justify-content: flex-start; /* 좌측부터 정렬 */
     align-items: center; /* 수직 가운데 정렬 */
     height: 50px;
-    font-size: 22px;
+    font-size: 18px;
     line-height: 42px;
     letter-spacing: 0.05em;
     font-weight: 700;

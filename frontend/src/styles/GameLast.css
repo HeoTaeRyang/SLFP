@@ -1,69 +1,138 @@
+/* 전체 캘린더 컨테이너 */
 .calendar-container {
   text-align: center;
+  margin: 0 auto;
+  max-width: 70%;
+  max-height: 75vh;
 }
 
+.free-container-underbox-1 {
+  display: flex; 
+  height: 1px;
+  width: 100%;
+  background-color: rgb(183, 183, 183);
+  margin-top:20px;
+  margin-bottom:20px;
+}
+
+/* 경기 일정 제목 */
+.cal-title {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight:400;
+  color: #282828; /* 검정색 텍스트 */
+  
+}
+
+/* 달 이동 버튼들 */
 .month-change-btns {
   display: flex;
-  align-items: center;
+  align-items: center; /* 세로 중앙 정렬 */
   justify-content: center;
   gap: 10px;
 }
 
 .month-btn {
-  background-color: white;
+  background-color: transparent;
   border: none;
   font-size: 24px;
   cursor: pointer;
+  color: #000;
+  padding: 0;
+  width: auto;
+  transition: color 0.3s;
+  line-height: 1; /* 버튼 텍스트가 세로로 중앙에 오도록 설정 */
 }
 
 .month-btn:hover {
-  opacity: 0.7;
+  color: #d6d6d6; /* 마우스 오버 시 파랑으로 변하도록 설정 */
 }
 
+/* 월 표시 텍스트 */
+.month-change-btns span {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000; /* 검정색 */
+  line-height: 1; /* 텍스트 세로 중앙 정렬 */
+}
+
+/* 달력 */
 .calendar {
   display: flex;
-  flex-direction: column; /* 컬럼 방향으로 정렬 */
-  gap: 10px; /* 주 간의 간격 */
+  flex-direction: column;
+  gap: 10px;
   margin-top: 20px;
 }
 
+/* 캘린더 헤더 (요일명) */
 .calendar-header {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   font-weight: bold;
-  background-color: #f1f1f1;
+  background-color: #f1f9fd;
+  color: #2a5a8f;
+  padding: 10px 0;
 }
 
+/* 캘린더 본문 */
 .calendar-body {
   display: flex;
-  flex-direction: column; /* 세로로 주를 나누기 위해 컬럼으로 배치 */
+  flex-direction: column;
   gap: 5px;
 }
 
 .calendar-row {
   display: flex;
-  justify-content: space-between; /* 날짜를 좌우로 배치 */
+  justify-content: space-between;
+  gap: 5px; 
 }
 
+/* 캘린더 셀 */
 .calendar-cell {
-  padding: 20px;
-  text-align: center;
+  width: 185px;
+  height: 195px;
+  text-align: left;
   border: 1px solid #ccc;
   cursor: pointer;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #fff;
-  min-height: 60px; /* 셀 높이 */
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 10px;
   font-size: 18px;
+  box-sizing: border-box;
+  position: relative;
+  background-color: #f9fbfd;
+  border-radius: 1px;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
+/* 캘린더 셀 활성화 시 (클릭 시) */
 .calendar-cell.active:hover {
-  background-color: #f0f0f0;
+  background-color: #c7e0f4;
+  transform: scale(1.05);
 }
 
+/* 날짜 숫자 색상 */
+.calendar-cell span {
+  color: #3b8cb1;
+  font-weight: bold;
+}
+
+/* 버튼 */
 button {
   margin-top: 20px;
   padding: 10px 20px;
   font-size: 16px;
+  background-color: #1f75bc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #165b8b;
 }

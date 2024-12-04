@@ -23,6 +23,8 @@
   align-items: center;  /* 항목을 세로로 중앙 정렬 */
   height: 180px;
   width: 100%;
+  border-bottom: 1px solid #ccc; /* 회색 얇은 선 추가 */
+  
 }
 
 .nav-bar-down {
