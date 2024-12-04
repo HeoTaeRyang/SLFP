@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.free-post-box-0{
+  display: flex; /* 가로 정렬 */
+  height:50px;
+  font-size: 22px;
+  line-height: 42px;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+
+
+.free-post-No{
+  width:340px;
+}
+.free-post-box-title{
+  width:360px;
+}
+.free-post-user{
+  width:210px;
+}
+
+.free-post-time{
+  width:170px;
+  
+}
+.free-post-watch{
+  width:100px;
+}
