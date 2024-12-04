@@ -34,7 +34,7 @@ def get_gameResultMonth():
         games = []
         tmp1 = game.get_game_month(year,month)
         for i in tmp1:
-            tmp2 = {'date':i[1], 'time':i[2], 'stadium':i[3],'status':i[4],'home_team':i[5],'away_team':i[6],'home_result':i[7],'home_score':i[8],'away_score':i[9],'home_pitcher':i[10], 'away_pitcher':i[11]}
+            tmp2 = {'day':i[1].split()[1][:-1], 'time':i[2], 'stadium':i[3],'status':i[4],'home_team':i[5],'away_team':i[6],'home_result':i[7],'home_score':i[8],'away_score':i[9],'home_pitcher':i[10], 'away_pitcher':i[11]}
             games.append(tmp2)
         response = {
             'games' : games,
@@ -98,7 +98,6 @@ def get_PostPages():
         for i in tmp1:
             comment_num = comment.get_comment_num(i[0])
             recommend_num = recommend.get_recommend_num(i[0])
-            print(comment_num,recommend_num)
             tmp2 = {'id':i[0], 'title':i[1], 'user':i[2],'time':i[3],'views':i[4],'comments':comment_num, 'recommends':recommend_num}
             pages.append(tmp2)
         response = {
@@ -323,9 +322,7 @@ def attendence():
         
         now = dt.now()
         date = now.strftime("%Y-%m-%d")
-
-        print(id,date)
-        print(user.get_last_login(id))
+        
         if(user.get_last_login(id) != date):
             user.set_last_login(id,date)
             user.add_point(id,100)
@@ -345,3 +342,4 @@ def attendence():
     
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
+    

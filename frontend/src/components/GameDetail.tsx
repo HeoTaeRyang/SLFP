@@ -1,16 +1,19 @@
+// GameDetail.tsx
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import "../styles/GameDetail.css";
 
+// Define the Game interface for TypeScript
 interface Game {
-  date: string;
+  day: string;
   time: string;
   stadium: string;
   status: string;
   home_team: string;
   away_team: string;
   home_result: string;
+  away_result: string;
   home_score: number;
   away_score: number;
   home_pitcher: string;
@@ -18,60 +21,85 @@ interface Game {
 }
 
 const GameDetail = () => {
-  const { year, month, day } = useParams<{ year: string; month: string; day: string }>();
-  const [games, setGames] = useState<Game[] | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const { year, month, day } = useParams(); // Get year, month, and day from URL params
+  const [games, setGames] = useState<Game[]>([]); // Store game results
+  const [loading, setLoading] = useState<boolean>(true); // Loading state
+  const [error, setError] = useState<string>(''); // Error state
 
   useEffect(() => {
-    const fetchGameDetails = async () => {
-      try {
-        const response = await axios.post('/gameResultMonth', {
-          year: parseInt(year || '2024'),
-          month: parseInt(month || '1'),
-        });
-        
-        const filteredGames = response.data.games.filter((game: Game) => game.date === `${year}-${month}-${day}`);
-        setGames(filteredGames);
-      } catch (err) {
-        console.error('Error fetching game details:', err);
-        setError('경기 데이터를 가져오는 중 오류가 발생했습니다.');
-      }
-    };
+    if (!year || !month) return; // Ensure year and month are available
 
-    fetchGameDetails();
-  }, [year, month, day]);
+    // Fetch game results for the specific month and year
+    axios.post('http://localhost:5000/gameResultMonth', { year, month })
+      .then(response => {
+        setGames(response.data.games); // Update games state with fetched data
+        setLoading(false); // Set loading to false after data is fetched
+      })
+      .catch(err => {
+        setError('Error fetching game results');
+        setLoading(false);
+      });
+  }, [year, month]); // Re-run the effect whenever year or month changes
+
+  // Filter games by specific day if day param is present
+  const filteredGames = day
+    ? games.filter(game => game.day === day) // If day is present, filter by day
+    : games; // Otherwise, return all games for the month
+
+  if (loading) {
+    return <div>Loading...</div>; // Show loading text while fetching
+  }
 
   if (error) {
-    return <div className="game-detail-container error">{error}</div>;
+    return <div>{error}</div>; // Show error message if something goes wrong
   }
 
   return (
     <div className="game-detail-container">
-      <h1>{`${year}년 ${month}월 ${day}일 경기 결과`}</h1>
-      {games ? (
-        games.length > 0 ? (
-          <div className="game-list">
-            {games.map((game, index) => (
-              <div key={index} className="game-card">
-                <p><strong>경기 날짜:</strong> {game.date}</p>
-                <p><strong>경기 시간:</strong> {game.time}</p>
-                <p><strong>구장:</strong> {game.stadium}</p>
-                <p><strong>경기 상태:</strong> {game.status}</p>
-                <p><strong>홈 팀:</strong> {game.home_team} ({game.home_score})</p>
-                <p><strong>원정 팀:</strong> {game.away_team} ({game.away_score})</p>
-                <p><strong>홈 투수:</strong> {game.home_pitcher}</p>
-                <p><strong>원정 투수:</strong> {game.away_pitcher}</p>
+      <a href="/gamelast">
+        <button className="list-button">
+          목록
+        </button>
+      </a>
+      <h2>{year}년 {month}월 {day ? `${day}일` : ''} 경기 결과</h2>
+      <div className="game-list">
+        {filteredGames.length > 0 ? (
+          filteredGames.map((game, index) => (
+            <div key={index} className={`game-card ${game.status === "진행 중" ? "ongoing" : "finished"}`}>
+              <div className="game-header">
+                <div className="game-time">{game.time}</div>
+                <div className="game-stadium">{game.stadium}</div>
               </div>
-            ))}
-          </div>
+              <div className="game-teams">
+                {/* 팀 이름을 클릭하면 해당 경기의 선수 통계 페이지로 이동 */}
+                <div>
+                  <Link to={`/gameplayer/${year}/${month}/${day}/${game.home_team}/${game.away_team}`}>
+                    <span className="team-link">
+                      {game.home_team} vs {game.away_team}
+                    </span>
+                  </Link>
+                </div>
+              </div>
+              <div className="game-score">
+                {game.status === "진행 중" ? (
+                  <span className="status-ongoing">진행 중</span>
+                ) : (
+                  <>
+                    <span className="home-score">{game.home_score}</span> - <span className="away-score">{game.away_score}</span>
+                  </>
+                )}
+              </div>
+              <div className="game-pitchers">
+                <span>{game.home_pitcher} vs {game.away_pitcher}</span>
+              </div>
+            </div>
+          ))
         ) : (
-          <p>해당 날짜에 경기가 없습니다.</p>
-        )
-      ) : (
-        <p>데이터를 불러오는 중...</p>
-      )}
+          <div>No games found for this day.</div>
+        )}
+      </div>
     </div>
   );
-};
+}
 
 export default GameDetail;

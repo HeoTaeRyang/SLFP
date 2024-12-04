@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate, useParams } from 'react-router-dom'; // useParams 추가
+import { Routes, Route,useParams } from 'react-router-dom';
 import NavBar from './components/NavBar'; // 네비게이션바 컴포넌트
 import Home from "./components/Home";
 import Login from "./components/Login";
@@ -6,10 +6,11 @@ import Register from "./components/Register";
 import FreePost from './components/FreePost'; // 글 목록 페이지
 import FreeWriting from './components/FreeWriting'; // 글 작성 페이지
 import FreeLook from './components/FreeLook'; // 글 상세 페이지
-import FindLike from './components/Findlike';//닮은꼴 찾기
-import GameLast from './components/GameLast';//경기 결과
-import GameRanking from './components/GameRanking';//순위
-
+import FindLike from './components/Findlike';// 닮은꼴 찾기
+import GameLast from './components/GameLast';// 경기 결과
+import GameRanking from './components/GameRanking';// 순위
+import GameDetail from './components/GameDetail'; // 경기 상세 페이지
+import GamePlayer from './components/GamePlayer'; // 선수 상세 페이지
 
 // ShellRoute 컴포넌트: 네비게이션 바와 콘텐츠를 공통 레이아웃으로 설정
 const ShellRoute = ({ children }: { children: React.ReactNode }) => {
@@ -19,13 +20,6 @@ const ShellRoute = ({ children }: { children: React.ReactNode }) => {
       <div className="content">{children}</div>
     </>
   );
-};
-
-// FreeLookWithParams 컴포넌트: URL의 id 값을 받아서 FreeLook 컴포넌트에 전달
-const FreeLookWithParams = () => {
-  const { id } = useParams<{ id: string }>(); // URL의 id 값 추출
-  const postId = parseInt(id || "0", 10); // 문자열을 숫자로 변환
-  return <FreeLook postId={postId} />;
 };
 
 function App() {
@@ -54,7 +48,7 @@ function App() {
         }
       />
 
-<Route
+      <Route
         path="/gamelast"
         element={
           <ShellRoute>
@@ -63,7 +57,7 @@ function App() {
         }
       />
 
-<Route
+      <Route
         path="/gameranking"
         element={
           <ShellRoute>
@@ -72,14 +66,32 @@ function App() {
         }
       />
 
-      
+      {/* 경기 상세 페이지 */}
+      <Route
+        path="/gamedetail/:year/:month/:day"
+        element={
+          <ShellRoute>
+            <GameDetail />
+          </ShellRoute>
+        }
+      />
+
+      {/* 경기 선수 상세 페이지 (homeTeam만 사용) */}
+      <Route
+        path="/gameplayer/:year/:month/:day/:homeTeam/:awayteam"
+        element={
+          <ShellRoute>
+            <GamePlayer />
+          </ShellRoute>
+        }
+      />
 
       {/* Free 관련 라우트 */}
       <Route
         path="/free/:id"
         element={
           <ShellRoute>
-            <FreeLookWithParams />
+            <FreeLookWrapper />
           </ShellRoute>
         }
       />
@@ -99,9 +111,16 @@ function App() {
           </ShellRoute>
         }
       />
-      
     </Routes>
   );
 }
+
+// FreeLookWrapper 컴포넌트: URL 파라미터를 받아 FreeLook에 전달
+const FreeLookWrapper = () => {
+  const { id } = useParams<{ id: string }>(); // URL에서 'id' 파라미터를 받아옴
+  const postId = id ? parseInt(id) : NaN; // id를 숫자로 변환
+
+  return <FreeLook postId={postId} />; // FreeLook 컴포넌트에 postId 전달
+};
 
 export default App;
