@@ -2,12 +2,12 @@ from db.connect import con
 
 def get_recommend(id,num):
     cursor = con.cursor()
-    cursor.execute(f"SELECT Count(*) FROM Recommend WHERE id='{id}' and post_num={num};")
+    cursor.execute(f"SELECT Count(*) FROM Recommend WHERE id='{id}' and post_number={num};")
     return cursor.fetchone()[0]
 
 def get_recommend_num(num):
     cursor = con.cursor()
-    cursor.execute(f"SELECT Count(*) FROM Recommend WHERE post_num={num};")
+    cursor.execute(f"SELECT Count(*) FROM Recommend WHERE post_number={num};")
     res = cursor.fetchone()[0]
     if res:
         return res
