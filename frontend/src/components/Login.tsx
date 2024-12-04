@@ -27,8 +27,8 @@ const Login: React.FC = () => {
       const data = await response.json();
 
       if (response.ok) {
-        localStorage.setItem('authToken', data.token); // 토큰 저장
-        localStorage.setItem('userId', formData.id); // 사용자 아이디 저장
+        localStorage.setItem('authToken', data.token);
+        localStorage.setItem('userId', formData.id);
         navigate('/');
       } else {
         setError(data.error || '로그인에 실패했습니다.');
