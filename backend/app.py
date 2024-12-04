@@ -15,6 +15,7 @@ from backend.db import player
 from backend.db import post
 from backend.db import comment
 from backend.db import recommend
+from backend.db import game
 
 from ai import find_similar_player
 
@@ -22,6 +23,27 @@ app = Flask(__name__)
 CORS(app)  # 모든 도메인에서 오는 요청을 허용
 
 IMAGE_FOLDER = "./db/players"
+
+# 경기결과 달별 조회
+@app.route('/gameResultMonth', methods=['POST'])
+def get_gameResultMonth():
+    try:
+        data = request.get_json()
+        year = data.get('year', '')
+        month = data.get('month', '')
+        games = []
+        tmp1 = game.get_game_month(year,month)
+        for i in tmp1:
+            tmp2 = {'date':i[1], 'time':i[2], 'stadium':i[3],'status':i[4],'home_team':i[5],'away_team':i[6],'home_result':i[7],'home_score':i[8],'away_score':i[9],'home_pitcher':i[10], 'away_pitcher':i[11]}
+            games.append(tmp2)
+        response = {
+            'games' : games,
+        }
+        # 결과를 JSON 형식으로 반환
+        return jsonify(response)        
+    except Exception as e:
+        # 예외 처리: 에러 메시지를 클라이언트에 반환
+        return jsonify({'error': str(e)}), 500
 
 # 자유게시판 페이지별 조회
 @app.route('/postPages', methods=['POST'])
@@ -287,4 +309,13 @@ def attendence():
         return jsonify({'error': str(e)}), 500
     
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    # app.run(debug=True, host='0.0.0.0', port=5000)
+    # team = '삼성'
+    # print(team)
+    # print(game.get_game_team_result(2024,team))
+    # print(len(game.get_game_team_result(2024,team)))
+    # print(game.get_game_team_win_num(2024,team))
+    # print(game.get_game_team_lose_num(2024,team))
+    # print(game.get_game_team_draw_num(2024,team))
+    
+    
