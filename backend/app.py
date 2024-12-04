@@ -340,6 +340,37 @@ def attendence():
         # 예외 처리: 에러 메시지를 클라이언트에 반환
         return jsonify({'error': str(e)}), 500
     
+# 선수단
+@app.route('/players', methods=['POST'])
+def players():
+    data = request.get_json()
+    type = data.get('type', '')
+    
+    result = player.get_player_info(type)
+    
+    numbers = [row[1] for row in result]
+    
+    combined_result = []
+    for row in result:
+        name, number, roll = row
+        
+        photo_path = os.path.join(IMAGE_FOLDER, f"{number}.jpg")
+        
+        if os.path.exists(photo_path):
+            with open(photo_path, "rb") as f:
+                photo_base64 = base64.b64encode(f.read()).decode('utf-8')
+        else:
+            photo_base64 = None
+            
+        combined_result.append({
+            'name': name,
+            'number': number,
+            'roll': roll,
+            'photo': photo_base64
+        })
+        
+    return jsonify({'player': combined_result})
+    
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
     
