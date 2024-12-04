@@ -44,6 +44,41 @@ def get_gameResultMonth():
     except Exception as e:
         # 예외 처리: 에러 메시지를 클라이언트에 반환
         return jsonify({'error': str(e)}), 500
+    
+# 시즌 순위 조회
+@app.route('/rank', methods=['POST'])
+def get_rank():
+    try:
+        data = request.get_json()
+        year = data.get('year', '')
+        teams = ['KIA','삼성','LG','두산','KT','SSG','NC','한화','롯데','키움']
+        rank = []
+        for i in teams:
+            win = game.get_game_team_win_num(year,i)
+            lose = game.get_game_team_lose_num(year,i)
+            draw = game.get_game_team_draw_num(year,i)
+            games = win+lose+draw
+            win_rate = round(win/(win+lose),3)
+            rank.append([0,i,games,win,lose,draw,win_rate])
+        rank.sort(key=lambda x:x[6],reverse=True)
+        rank[0][0] = 1
+        for i in range(1,10):
+            if rank[i][6] == rank[i-1][6]:
+                rank[i][0] = rank[i-1][0]
+            else:
+                rank[i][0] = i+1
+        ranking = []
+        for i in rank:
+            tmp = {'rank':i[0], 'team':i[1], 'game':i[2],'win':i[3],'lose':i[4],'draw':i[5],'win_rate':i[6]}
+            ranking.append(tmp)
+        response = {
+            'ranking' : ranking,
+        }
+        # 결과를 JSON 형식으로 반환
+        return jsonify(response)        
+    except Exception as e:
+        # 예외 처리: 에러 메시지를 클라이언트에 반환
+        return jsonify({'error': str(e)}), 500
 
 # 자유게시판 페이지별 조회
 @app.route('/postPages', methods=['POST'])
@@ -309,13 +344,4 @@ def attendence():
         return jsonify({'error': str(e)}), 500
     
 if __name__ == '__main__':
-    # app.run(debug=True, host='0.0.0.0', port=5000)
-    # team = '삼성'
-    # print(team)
-    # print(game.get_game_team_result(2024,team))
-    # print(len(game.get_game_team_result(2024,team)))
-    # print(game.get_game_team_win_num(2024,team))
-    # print(game.get_game_team_lose_num(2024,team))
-    # print(game.get_game_team_draw_num(2024,team))
-    
-    
+    app.run(debug=True, host='0.0.0.0', port=5000)
