@@ -1,13 +1,50 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../styles/GameLast.css";
+import axios from 'axios';
+
+type Game = {
+  day: string;
+  time: string;
+  stadium: string;
+  status: string;
+  home_team: string;
+  away_team: string;
+  home_result: string;
+  home_score: string;
+  away_score: string;
+  home_pitcher: string;
+  away_pitcher: string;
+};
 
 const GameLast = () => {
   const navigate = useNavigate();
   
   const [year, setYear] = useState(2024);
-  const [month, setMonth] = useState(11); // 초기 월은 11월로 설정
+  const [month, setMonth] = useState(3); // 초기 월은 11월로 설정
   const [selectedDate, setSelectedDate] = useState<string>('');
+  
+  //백 연결 코드임 요거 써서 테스트 해보면 될듯 위에 Games도 만들어뒀음
+  // const [games, setGames] = useState<Game | null>(null);
+
+  // const fetchGames = async () => {
+  //   try {
+  //     const requestData = {
+  //       year: year,
+  //       month: month,
+  //     };
+
+  //     const response = await axios.post(
+  //       'http://localhost:5000/gameResultMonth', // 서버에서 데이터를 가져오는 API
+  //       requestData,
+  //       { headers: { 'Content-Type': 'application/json' } }
+  //     );
+  //     setGames(response.data.games);
+  //   } catch (error) {
+  //     console.error('게시글 목록을 가져오는 중 오류 발생:', error);
+  //   }
+  // };
+
 
   // 날짜 선택 핸들러
   const handleDateChange = (date: string) => {
