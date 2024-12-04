@@ -342,6 +342,27 @@ def attendence():
     except Exception as e:
         # 예외 처리: 에러 메시지를 클라이언트에 반환
         return jsonify({'error': str(e)}), 500
+@app.route('/api/players', methods=['GET'])
+def get_players():
+    try:
+        # 데이터베이스에서 선수 목록 가져오기
+        players_data = player.get_all_players()  # player 모듈에서 모든 선수 정보 가져오기
+        players = []
+
+        # 각 선수 정보를 dictionary 형태로 변환
+        for row in players_data:
+            player_info = {
+                "id": row[0],
+                "name": row[1],
+                "imageUrl": row[2]  # 이미지 경로가 데이터베이스에 저장되어 있는 경우
+            }
+            players.append(player_info)
+
+        # 결과를 JSON 형식으로 반환
+        return jsonify(players)
+    except Exception as e:
+        # 예외 처리: 에러 메시지를 클라이언트에 반환
+        return jsonify({'error': str(e)}), 500
     
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
