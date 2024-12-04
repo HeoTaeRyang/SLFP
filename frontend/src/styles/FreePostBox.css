@@ -10,27 +10,34 @@
 .free-post-box-0{
   display: flex; /* 가로 정렬 */
   height:50px;
-  font-size: 22px;
+  font-size: 18px;
   line-height: 42px;
   letter-spacing: 0.05em;
-  font-weight: 700;
+  font-weight: 500;
+  border-bottom: 1px solid #ccc; /* 하단 선 */
+  width:1400px;
 }
 
 
 .free-post-No{
-  width:340px;
+  text-align: center; /* 텍스트를 수평 중앙 정렬 */
+  width:240px;
 }
 .free-post-box-title{
-  width:360px;
+  text-align: center; /* 텍스트를 수평 중앙 정렬 */
+  width:500px;
 }
 .free-post-user{
-  width:210px;
+  text-align: center; /* 텍스트를 수평 중앙 정렬 */
+  width:110px;
 }
 
 .free-post-time{
-  width:170px;
+  text-align: center; /* 텍스트를 수평 중앙 정렬 */
+  width:400px;
   
 }
 .free-post-watch{
-  width:100px;
+  text-align: center; /* 텍스트를 수평 중앙 정렬 */
+  width:90px;
 }
