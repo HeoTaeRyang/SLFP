@@ -108,11 +108,17 @@ const NavBar: React.FC = () => {
                 {userId ? `${userId}님` : "사용자님"}
               </span>
           <a onClick={handleLogout} className="navbt4">
+<<<<<<< HEAD
             로그아웃
           </a>
           <a onClick={HandleAttendence} className="navbt4">
             출석
           </a>
+=======
+          로그아웃
+            </a>
+          <div className="navbt4">_____ </div>
+>>>>>>> d7caf8bb261e129ad99e9abf426e99241f9f9552
 
             </>
           ) : (
