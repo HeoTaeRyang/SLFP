@@ -10,6 +10,8 @@ import FreePost from "./FreePost"; // Free 글 목록 페이지
 import FreeWriting from "./FreeWriting"; // Free 글 작성 페이지
 import FreeLook from "./FreeLook"; // Free 글 상세 페이지
 import GameLast from './GameLast';//경기 결과
+import GameRanking from './GameRanking';//순위
+
 
 function App() {
   const isLoggedIn = !!localStorage.getItem('userid');
@@ -30,6 +32,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/findlike" element={<Findlike />} />
         <Route path="/gamelast" element={<GameLast />} />
+        {/* <Route path="/gamenext" element={<GameNext />} /> */}
+        <Route path="/gameranking" element={<GameRanking />} />
 
        {/* Free 관련 라우트 */}
        <Route path="/free/post" element={<FreePost />} />

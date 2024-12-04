@@ -1,0 +1,175 @@
+.free-look-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+  }
+  
+  .free-post-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    
+  }
+  
+  .free-post-info {
+    display: flex;
+    justify-content: flex-start;
+    gap:20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #777;
+    font-size: 18px;
+  }
+  
+  .free-post-content {
+    font-size: 18px;
+    margin-bottom: 60px;
+    margin-top: 60px;
+    line-height: 1.6;
+    
+  }
+  
+  .comments-section-0 {
+    margin-top: 40px;
+    
+  }
+  
+  .comments-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .comment-box {
+    border-top: 1px solid #ddd;
+    padding: 10px 0;
+    width:100%;
+    height:90px;
+  }
+  
+  .comment-author {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .comment-text {
+    margin-top: 5px;
+    color: #555;
+  }
+  
+  .comment-input-section {
+    display: flex;
+    justify-content: space-between; /* 입력창과 버튼의 간격 유지 */
+    align-items: flex-start; /* 상단 정렬 */
+    margin-top:30px;
+    gap: 10px; /* 간격 추가 */
+    width: 100%; /* 섹션 전체 너비 */
+  }
+  
+  .comment-input {
+    width: 80%;
+    height: 100px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    resize: none;
+  }
+  
+  .comment-submit-button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width:20%;
+    height:95px;
+  }
+  
+  .comment-submit-button:hover {
+    background-color: #45a049;
+  }
+  
+  
+  
+  .aiask-line,
+  .aiask-line * {
+  box-sizing: border-box;
+  }
+  .aiask-line {
+  margin-top: 50px;
+  margin-bottom: 0px;
+  border-style: solid;
+  border-color: #c4c4c4;
+  border-width: 1px 0 0 0;
+  height: 0px;
+  position: relative;
+  }
+  
+  .aiask-line1,
+  .aiask-line1 * {
+  box-sizing: border-box;
+  }
+  .aiask-line1 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border-style: solid;
+  border-color: #c4c4c4;
+  border-width: 1px 0 0 0;
+  height: 0px;
+  position: relative;
+  }
+  
+  
+  .list-button {
+  margin-top: 30px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  }
+  
+  .list-button:hover {
+  background-color: #0056b3;
+  }
+
+
+  .recommend-container {
+    display: flex; /* 버튼 위치 제어를 위해 Flexbox 사용 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    margin: 20px; /* 컨테이너 주변 여백 */
+    width: 45px; /* 컨테이너 너비 */
+    height: 40px; /* 컨테이너 높이 */
+    position:absolute;
+    top:300px;
+    left:1200px;
+    background-color:#ffffff
+  }
+  
+  .recommend-button {
+    cursor: pointer; /* 마우스 포인터 변경 */
+    padding: 0; /* 여백 제거 */
+    width: 50px; /* 버튼 크기 */
+    height: 50px; /* 버튼 크기 */
+  }
+  
+
+
+  .circle-box {
+    display: flex; /* 버튼 정렬을 위한 Flexbox 사용 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    width: 30px; /* 박스 가로 길이 */
+    height: 30px; /* 박스 세로 길이 */
+    background-color: #d5d5d5; /* 박스 배경색 */
+    border-radius: 50%; /* 완전한 원형으로 변경 */
+  }
