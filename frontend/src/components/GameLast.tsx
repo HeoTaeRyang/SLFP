@@ -1,22 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import "../styles/GameLast.css";
-import axios from 'axios';
-
-type Game = {
-  day: string;
-  time: string;
-  stadium: string;
-  status: string;
-  home_team: string;
-  away_team: string;
-  home_result: string;
-  home_score: string;
-  away_score: string;
-  home_pitcher: string;
-  away_pitcher: string;
-};
 
 const GameLast = () => {
   const navigate = useNavigate();
@@ -46,28 +31,6 @@ const GameLast = () => {
         console.error('Error fetching game results:', err);
       });
   }, [year, month]);
-
-  
-  //백 연결 코드임 요거 써서 테스트 해보면 될듯 위에 Games도 만들어뒀음
-  // const [games, setGames] = useState<Game | null>(null);
-
-  // const fetchGames = async () => {
-  //   try {
-  //     const requestData = {
-  //       year: year,
-  //       month: month,
-  //     };
-
-  //     const response = await axios.post(
-  //       'http://localhost:5000/gameResultMonth', // 서버에서 데이터를 가져오는 API
-  //       requestData,
-  //       { headers: { 'Content-Type': 'application/json' } }
-  //     );
-  //     setGames(response.data.games);
-  //   } catch (error) {
-  //     console.error('게시글 목록을 가져오는 중 오류 발생:', error);
-  //   }
-  // };
 
   // 날짜 선택 핸들러
   const handleDateChange = (date: string) => {
@@ -135,19 +98,27 @@ const GameLast = () => {
 
   // 해당 날짜에 경기가 있는지 확인하고 점수 표시
   const getGameForDate = (date: string) => {
-    const game = games.find((game) => game.day === date);
-    if (!game) return null;
-
-    // 현재 날짜와 경기 날짜를 비교
+    const gamesForDate = games.filter((game) => game.day === date); // 조건에 맞는 모든 경기 가져오기
+    if (gamesForDate.length === 0) return null;
+  
+    // 현재 날짜와 비교
     const gameDate = new Date(`${year}-${month}-${date}`);
     const currentDate = new Date(getCurrentDate());
-
+  
     if (gameDate > currentDate) {
-      // 미래의 경기라면 링크를 만들지 않고 홈팀과 어웨이팀만 표시
-      return `${game.home_team} : ${game.away_team}`;
+      // 미래의 경기라면 홈팀과 어웨이팀만 표시
+      return gamesForDate.map(
+        (game) => `${game.home_team}:${game.away_team}`
+      ).join("\n"); // 여러 경기 정보를 줄바꿈으로 구분
     } else {
-      // 과거 경기라면 점수와 함께 표시
-      return `${game.home_team} ${game.home_score} - ${game.away_score} ${game.away_team}`;
+      // 과거 경기라면 점수와 상태 포함
+      return gamesForDate.map((game) => {
+        if (game.status === '취소') {
+          return `${game.home_team}:${game.away_team} (취소)`;
+        } else {
+          return `${game.home_team} ${game.home_score} - ${game.away_score} ${game.away_team}`;
+        }
+      }).join("\n"); // 여러 경기 정보를 줄바꿈으로 구분
     }
   };
 
