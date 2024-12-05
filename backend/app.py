@@ -248,8 +248,9 @@ def add_recommend():
             res = "이미 추천했습니다."
         else:
             recommend.add_recommend(id,number)
+            writer = post.get_id(number)
+            user.add_point(writer,20)
             res = "추천했습니다"
-        
         response = {
             'answer': res,
         }
@@ -390,6 +391,20 @@ def attendence():
         # 예외 처리: 에러 메시지를 클라이언트에 반환
         return jsonify({'error': str(e)}), 500
     
+# 마이페이지
+@app.route('/myPage', methods=['POST'])
+def my_page():
+    data = request.get_json()
+    userid = data.get("id")
+    
+    db_user = user.get_user(userid)
+    
+    my_page = [
+        {'id': db_user[0][0], 'name': db_user[0][2], 'point': db_user[0][3]}
+    ]
+    
+    return jsonify(my_page)
+    
 # 선수단
 @app.route('/players', methods=['POST'])
 def players():
@@ -446,6 +461,17 @@ def match_player():
         })
         
     return jsonify({'player': result})
+
+# 포인트 랭킹
+@app.route('/ranking', methods=['POST'])
+def ranking():
+    data = user.get_point_user()
+    
+    result = [
+        {'rank': index+1, 'name': data[index][0], 'point': data[index][1]} for index in range(0,10)
+    ]
+    
+    return jsonify(result)
     
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

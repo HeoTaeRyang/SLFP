@@ -15,6 +15,7 @@ import Coaches from './components/Coaches';
 import Pitchers from './components/Pitchers';
 import Batters from './components/Batters';
 import MatchPlayer from './components/MatchPlayer';
+import MyPage from './components/Mypage';
 
 // ShellRoute 컴포넌트: 네비게이션 바와 콘텐츠를 공통 레이아웃으로 설정
 const ShellRoute = ({ children }: { children: React.ReactNode }) => {
@@ -152,6 +153,14 @@ function App() {
         element={
           <ShellRoute>
             <FreeWriting />
+          </ShellRoute>
+        }
+      />
+      <Route
+        path="/mypage"
+        element={
+          <ShellRoute>
+            <MyPage />
           </ShellRoute>
         }
       />

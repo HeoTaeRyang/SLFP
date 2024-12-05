@@ -46,7 +46,7 @@ const FreeLook = ({ postId }: { postId: number }) => {
     try {
         const requestData = {
           postNumber: postId,
-          id: localStorage.getItem('userid'),
+          id: localStorage.getItem('userId'),
         };
 
         const response = await axios.post(

@@ -70,3 +70,8 @@ def add_views_post(num):
     cursor = con.cursor()
     cursor.execute(f"UPDATE Post SET view_Count = View_Count + 1 WHERE number='{num}';")
     con.commit()
+    
+def get_id(num):
+    cursor = con.cursor()
+    cursor.execute(f"SELECT id FROM Post WHERE Number={num};")
+    return cursor.fetchone()[0]

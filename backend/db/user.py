@@ -38,3 +38,9 @@ def set_last_login(id,date):
     cursor = con.cursor()
     cursor.execute(f"UPDATE User SET date = '{date}' WHERE ID='{id}';")
     con.commit()
+    
+# 상위 포인트 10명
+def get_point_user():
+    cursor = con.cursor()
+    cursor.execute("SELECT name, point FROM User ORDER BY point DESC LIMIT 10;")
+    return cursor.fetchall()
