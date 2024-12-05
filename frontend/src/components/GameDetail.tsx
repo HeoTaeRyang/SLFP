@@ -17,6 +17,7 @@ interface Game {
   away_score: number;
   home_pitcher: string;
   away_pitcher: string;
+  dh: number;
 }
 
 const GameDetail: React.FC = () => {
@@ -65,7 +66,7 @@ const GameDetail: React.FC = () => {
           filteredGames.map((game, index) => (
             <div
               key={index}
-              className={`game-card ${game.status === '진행 중' ? 'ongoing' : 'finished'}`}
+              className={`game-card ${game.status === '취소' ? 'ongoing' : 'finished'}`}
             >
               <div className="game-header">
                 <span className="game-time">{game.time}</span>
@@ -73,7 +74,7 @@ const GameDetail: React.FC = () => {
               </div>
               <div className="game-teams">
                 <Link
-                  to={`/gameplayer/${year}/${month}/${day || ''}/${game.home_team}/${game.away_team}`}
+                  to={`/gameplayer/${year}/${month}/${day || ''}/${game.home_team}/${game.away_team}/${game.dh}`}
                 >
                   <span className="team-link">
                     {game.home_team} vs {game.away_team}
@@ -81,8 +82,8 @@ const GameDetail: React.FC = () => {
                 </Link>
               </div>
               <div className="game-score">
-                {game.status === '진행 중' ? (
-                  <span className="status-ongoing">진행 중</span>
+                {game.status === '취소' ? (
+                  <span className="status-ongoing">취소</span>
                 ) : (
                   <>
                     <span className="home-score">{game.home_score}</span> -{' '}

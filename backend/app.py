@@ -16,6 +16,7 @@ from backend.db import post
 from backend.db import comment
 from backend.db import recommend
 from backend.db import game
+from backend.db import record
 
 from ai import find_similar_player
 
@@ -34,10 +35,81 @@ def get_gameResultMonth():
         games = []
         tmp1 = game.get_game_month(year,month)
         for i in tmp1:
-            tmp2 = {'day':i[1].split()[1][:-1], 'time':i[2], 'stadium':i[3],'status':i[4],'home_team':i[5],'away_team':i[6],'home_result':i[7],'home_score':i[8],'away_score':i[9],'home_pitcher':i[10], 'away_pitcher':i[11]}
+            tmp2 = {'day':i[1].split()[1][:-1], 'time':i[2], 'stadium':i[3],'status':i[4],'home_team':i[5],'away_team':i[6],'home_result':i[7],'home_score':i[8],'away_score':i[9],'home_pitcher':i[10], 'away_pitcher':i[11],'dh':i[-1]}
             games.append(tmp2)
         response = {
             'games' : games,
+        }
+        # 결과를 JSON 형식으로 반환
+        return jsonify(response)        
+    except Exception as e:
+        # 예외 처리: 에러 메시지를 클라이언트에 반환
+        return jsonify({'error': str(e)}), 500
+    
+@app.route('/gameResultDetail', methods=['POST'])
+def get_gameResultDetail():
+    try:
+        data = request.get_json()
+        year = data.get('year', '')
+        month = data.get('month', '')
+        day = data.get('day', '')
+        home_team = data.get('home_team','')
+        away_team = data.get('away_team','')
+        dh = data.get('dh','')
+        
+        dic = {
+            'KIA':"HT",
+            '삼성':"SS",
+            'LG':"LG",
+            '두산':"OB",
+            'KT':"KT",
+            'SSG':"SK",
+            '롯데':"LT",
+            '한화':"HH",
+            'NC':"NC",
+            '키움':"WO"
+        }
+        
+        home_team = dic[home_team]
+        away_team = dic[away_team]
+        
+        if len(month) == 1:
+            month = '0' + month
+        if len(day) == 1:
+            day = '0' + day    
+        
+        date = year+'-'+month+'-'+day
+        
+        home_batter = []
+        tmp = record.get_record_batter(date,home_team,dh)
+        for i in tmp:
+            tmp2 = {'bo':i[3], 'name':i[4], 'position':i[5],'ab':i[6],'r':i[7],'h':i[8],'rbi':i[9],'hr':i[10],'bb':i[11],'k':i[12], 'avg':i[13]}
+            home_batter.append(tmp2)
+        
+        away_batter = []
+        tmp = record.get_record_batter(date,away_team,dh)
+        for i in tmp:
+            tmp2 = {'bo':i[3], 'name':i[4], 'position':i[5],'ab':i[6],'r':i[7],'h':i[8],'rbi':i[9],'hr':i[10],'bb':i[11],'k':i[12], 'avg':i[13]}
+            away_batter.append(tmp2)
+            
+        home_pitcher = []
+        tmp = record.get_record_pitcher(date,home_team,dh)
+        for i in tmp:
+            tmp2 = {'name':i[3],'ip':i[4], 'h':i[5], 'r':i[6],'er':i[7],'bb':i[8],'k':i[9],'hr':i[10],'bf':i[11],'ab':i[12],'p':i[13], 'era':i[14], 'whs':i[15]}
+            home_pitcher.append(tmp2)
+            
+            
+        away_pitcher = []
+        tmp = record.get_record_pitcher(date,away_team,dh)
+        for i in tmp:
+            tmp2 = {'name':i[3],'ip':i[4], 'h':i[5], 'r':i[6],'er':i[7],'bb':i[8],'k':i[9],'hr':i[10],'bf':i[11],'ab':i[12],'p':i[13], 'era':i[14], 'whs':i[15]}
+            away_pitcher.append(tmp2)
+        
+        response = {
+            'home_batters':home_batter,
+            'away_batters':away_batter,
+            'home_pitchers':home_pitcher,
+            'away_pitchers':away_pitcher
         }
         # 결과를 JSON 형식으로 반환
         return jsonify(response)        
@@ -377,4 +449,5 @@ def match_player():
     
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
+    print(record.get_record_batter('2024-06-30','삼성',1))
     

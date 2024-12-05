@@ -48,7 +48,7 @@ function App() {
         
 
         {/* 동적 날짜 및 팀 라우트 */}
-        <Route path="/gameplayer/:year/:month/:day/:homeTeam/:awayTeam" element={<GameDetailsWithParams />} />
+        <Route path="/gameplayer/:year/:month/:day/:homeTeam/:awayTeam/:dh" element={<GameDetailsWithParams />} />
         <Route path="/gamedetail/:year/:month/:day" element={<GamePlayer/>}/>
 
         {/* Free 관련 라우트 */}

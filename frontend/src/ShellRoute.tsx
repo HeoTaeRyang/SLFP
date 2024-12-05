@@ -77,8 +77,11 @@ function App() {
         element={
           <ShellRoute>
             <GameDetail />
+            </ShellRoute>
+        }
+      />         
 
-<Route
+      <Route
         path="/players/coaches"
         element={
           <ShellRoute>
@@ -91,7 +94,7 @@ function App() {
 
       {/* 경기 선수 상세 페이지 (homeTeam만 사용) */}
       <Route
-        path="/gameplayer/:year/:month/:day/:homeTeam/:awayteam"
+        path="/gameplayer/:year/:month/:day/:hometeam/:awayteam/:dh"
         element={
           <ShellRoute>
             <GamePlayer />
@@ -99,7 +102,7 @@ function App() {
         }
       />
 
-<Route
+      <Route
         path="/players/pitchers"
         element={
           <ShellRoute>
@@ -108,7 +111,7 @@ function App() {
         }
       />
 
-<Route
+      <Route
         path="/players/batters"
         element={
           <ShellRoute>
@@ -117,7 +120,7 @@ function App() {
         }
       />
 
-<Route
+      <Route
         path="/matchplayer"
         element={
           <ShellRoute>
