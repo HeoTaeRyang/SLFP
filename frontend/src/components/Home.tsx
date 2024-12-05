@@ -1,7 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/Home.css';
 
+interface RankingItem {
+  rank: number;
+  name: string;
+  point?: number;
+}
+
 const Home: React.FC = () => {
+  const [rankings, setRankings] = useState<RankingItem[]>([]);
+
+  useEffect(() => {
+    const fetchPointRanking = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/ranking", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+        });
+        const data = await response.json();
+        setRankings(data);
+      } catch (error) {
+        console.error("Error fetching point ranking:", error);
+      }
+    };
+
+    fetchPointRanking();
+  }, []);
+
   return (
     <div className="mainbox">
       <div className="maincontent">
@@ -39,18 +64,41 @@ const Home: React.FC = () => {
           </div>
 
           <div className="main-news-box">
-          <h2 className="main-news-title">NEWS</h2>
-          <div className="main-news-text1">
-          15일 대구 삼성라이온즈파크에서 열린 2024 신한 SOL ...</div>
-          <button className="main-news-read-button1">Read more</button>
-          <div className="main-news-line"></div>
-          <div className="main-news-text2">
-          가을도 지배한 삼성의 ‘영웅 스윙’ [IS 스타]</div>
-          <button className="main-news-read-button2">Read more</button>
-          <button className="main-news-read-all-button">Read all news</button>
-          <img className="main-news-pic1" src="main-news-pic1.png" alt="News Thumbnail" />
-          <img className="main-news-pic2" src="main-news-pic2.png" alt="Another Thumbnail" />
-        </div>
+            <h2 className="main-news-title">NEWS</h2>
+            <div className="main-news-text1">
+              15일 대구 삼성라이온즈파크에서 열린 2024 신한 SOL ...
+            </div>
+            <button className="main-news-read-button1">Read more</button>
+            <div className="main-news-line"></div>
+            <div className="main-news-text2">가을도 지배한 삼성의 ‘영웅 스윙’ [IS 스타]</div>
+            <button className="main-news-read-button2">Read more</button>
+            <button className="main-news-read-all-button">Read all news</button>
+            <img className="main-news-pic1" src="main-news-pic1.png" alt="News Thumbnail" />
+            <img className="main-news-pic2" src="main-news-pic2.png" alt="Another Thumbnail" />
+          </div>
+
+          {/* 포인트 랭킹 섹션 추가 */}
+          <div className="ranking-section">
+            <h2 className="ranking-title">POINT RANKING</h2>
+            <table className="ranking-table">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Name</th>
+                  <th>Point</th>
+                </tr>
+              </thead>
+              <tbody>
+                {rankings.map((item) => (
+                  <tr key={item.rank}>
+                    <td>{item.rank}</td>
+                    <td>{item.name}</td>
+                    <td>{item.point}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </main>
 
         <footer className="footer">

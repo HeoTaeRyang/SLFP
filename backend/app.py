@@ -461,6 +461,17 @@ def match_player():
         })
         
     return jsonify({'player': result})
+
+# 포인트 랭킹
+@app.route('/ranking', methods=['POST'])
+def ranking():
+    data = user.get_point_user()
+    
+    result = [
+        {'rank': index+1, 'name': data[index][0], 'point': data[index][1]} for index in range(0,10)
+    ]
+    
+    return jsonify(result)
     
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
