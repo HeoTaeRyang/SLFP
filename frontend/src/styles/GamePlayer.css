@@ -8,9 +8,15 @@
     margin-bottom: 20px;
   }
   
+
+  .divider-0 {
+    border-bottom: 1px solid rgb(255, 255, 255);
+    margin-top:100px;
+  }
+
   .divider {
     border-bottom: 2px solid black;
-    margin: 20px 0;
+    margin-top:40px;
   }
   
   .game-players-table table {
@@ -23,7 +29,12 @@
     padding: 10px;
     text-align: center;
     border: 1px solid #ccc;
-  }
+    width: 120px; /* 고정된 너비 설정 */
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+    overflow: hidden; /* 넘치는 텍스트 숨김 */
+    text-overflow: ellipsis; /* 넘칠 경우 ...으로 표시 */
+}
+
   
   .game-players-table th {
     background-color: white; /* 맨 윗줄 흰색 */

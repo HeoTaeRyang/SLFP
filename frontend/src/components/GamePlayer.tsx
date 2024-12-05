@@ -12,8 +12,8 @@ const GamePlayers = () => {
     const fetchPlayers = async () => {
       const homeDummyData = [
         {
-          name: '홈팀 선수1',
-          position: '투수',
+          name: '김ㄴㄴ',
+          position: '타자',
           at_bats: 5,
           runs: 1,
           hits: 3,
@@ -25,7 +25,7 @@ const GamePlayers = () => {
           avg: .600
         },
         {
-          name: '홈팀 선수2',
+          name: '박ㅎㅎ',
           position: '타자',
           at_bats: 4,
           runs: 2,
@@ -38,8 +38,8 @@ const GamePlayers = () => {
           avg: .500
         },
         {
-          name: '홈팀 선수3',
-          position: '외야수',
+          name: '샵ㄱㄱ',
+          position: '타자',
           at_bats: 4,
           runs: 0,
           hits: 1,
@@ -51,8 +51,8 @@ const GamePlayers = () => {
           avg: .250
         },
         {
-          name: '홈팀 선수4',
-          position: '1루수',
+          name: '솜ㅂㅂ',
+          position: '타자',
           at_bats: 5,
           runs: 1,
           hits: 2,
@@ -66,8 +66,8 @@ const GamePlayers = () => {
       ];
       const awayDummyData = [
         {
-          name: '어웨이팀 선수1',
-          position: '외야수',
+          name: '지ㅔㅔ',
+          position: '타자',
           at_bats: 4,
           runs: 0,
           hits: 1,
@@ -79,8 +79,8 @@ const GamePlayers = () => {
           avg: .250
         },
         {
-          name: '어웨이팀 선수2',
-          position: '1루수',
+          name: '강ㅇㅇ',
+          position: '타자',
           at_bats: 5,
           runs: 1,
           hits: 2,
@@ -92,8 +92,8 @@ const GamePlayers = () => {
           avg: .400
         },
         {
-          name: '어웨이팀 선수3',
-          position: '투수',
+          name: '천ㅂㅂ',
+          position: '타자',
           at_bats: 4,
           runs: 1,
           hits: 3,
@@ -105,7 +105,7 @@ const GamePlayers = () => {
           avg: .750
         },
         {
-          name: '어웨이팀 선수4',
+          name: '서ㅣㅣ',
           position: '타자',
           at_bats: 3,
           runs: 2,
@@ -128,6 +128,7 @@ const GamePlayers = () => {
 
   return (
     <div className="game-players-container">
+      <div className="divider-0"></div> {/* 굵은 검은 선 */}
       <h2>타자기록</h2>
       <div className="divider"></div> {/* 굵은 검은 선 */}
 
