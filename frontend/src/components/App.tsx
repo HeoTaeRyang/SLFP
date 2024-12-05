@@ -11,7 +11,10 @@ import FreeWriting from "./FreeWriting"; // Free 글 작성 페이지
 import FreeLook from "./FreeLook"; // Free 글 상세 페이지
 import GameLast from './GameLast';//경기 결과
 import GameRanking from './GameRanking';//순위
-
+import Coaches from './Coaches';
+import Pitchers from "./Pitchers";
+import Batters from "./Batters";
+import MatchPlayer from "./MatchPlayer";
 
 function App() {
   const isLoggedIn = !!localStorage.getItem('userid');
@@ -34,6 +37,10 @@ function App() {
         <Route path="/gamelast" element={<GameLast />} />
         {/* <Route path="/gamenext" element={<GameNext />} /> */}
         <Route path="/gameranking" element={<GameRanking />} />
+        <Route path="/players/coaches" element={<Coaches />} />
+        <Route path="/players/pitchers" element={<Pitchers />} />
+        <Route path="/players/batters" element={<Batters />} />
+        <Route path="/matchplayer" element={<MatchPlayer />} />
 
        {/* Free 관련 라우트 */}
        <Route path="/free/post" element={<FreePost />} />
