@@ -43,6 +43,10 @@ const NavBar: React.FC = () => {
     }
   }
 
+  const handleMyPage = () => {
+    navigate('/mypage'); // My Page로 이동
+  };
+
   // 메뉴 호버 핸들러
   const handleMouseEnter = (menu: string) => setHoveredMenu(menu);
   const handleMouseLeave = () => setHoveredMenu(null);
@@ -112,6 +116,9 @@ const NavBar: React.FC = () => {
           </a>
           <a onClick={HandleAttendence} className="navbt4">
             출석
+          </a>
+          <a onClick={handleMyPage} className="navbt4" >
+            마이페이지
           </a>
 
             </>

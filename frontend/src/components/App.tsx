@@ -17,6 +17,7 @@ import Coaches from './Coaches';
 import Pitchers from "./Pitchers";
 import Batters from "./Batters";
 import MatchPlayer from "./MatchPlayer";
+import MyPage from "./Mypage";
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
         <Route path="/players/pitchers" element={<Pitchers />} />
         <Route path="/players/batters" element={<Batters />} />
         <Route path="/matchplayer" element={<MatchPlayer />} />
+        <Route path="/mypage" element={<MyPage />} />
 
 
         
