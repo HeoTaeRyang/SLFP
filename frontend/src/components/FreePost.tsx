@@ -72,6 +72,7 @@ const FreePost = () => {
         <div className="free-text-3">닉네임</div>
         <div className="free-text-4">작성시간</div>
         <div className="free-text-5">조회수</div>
+        <div className="free-text-6">추천수</div>
       </div>
       <div className="free-container-underbox-0"></div>
     
@@ -85,6 +86,8 @@ const FreePost = () => {
           author={post.user}
           date={post.time}
           views={post.views}
+          comments={post.comments}
+          recommends={post.recommends}
         />
       ))}
 
