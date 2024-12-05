@@ -71,3 +71,4 @@ const GameRanking = () => {
 };
 
 export default GameRanking;
+

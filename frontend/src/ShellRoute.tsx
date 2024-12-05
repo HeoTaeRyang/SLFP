@@ -11,6 +11,10 @@ import GameLast from './components/GameLast';// 경기 결과
 import GameRanking from './components/GameRanking';// 순위
 import GameDetail from './components/GameDetail'; // 경기 상세 페이지
 import GamePlayer from './components/GamePlayer'; // 선수 상세 페이지
+import Coaches from './components/Coaches';
+import Pitchers from './components/Pitchers';
+import Batters from './components/Batters';
+import MatchPlayer from './components/MatchPlayer';
 
 // ShellRoute 컴포넌트: 네비게이션 바와 콘텐츠를 공통 레이아웃으로 설정
 const ShellRoute = ({ children }: { children: React.ReactNode }) => {
@@ -66,15 +70,24 @@ function App() {
         }
       />
 
+
       {/* 경기 상세 페이지 */}
       <Route
         path="/gamedetail/:year/:month/:day"
         element={
           <ShellRoute>
             <GameDetail />
+
+<Route
+        path="/players/coaches"
+        element={
+          <ShellRoute>
+            <Coaches />
+
           </ShellRoute>
         }
       />
+
 
       {/* 경기 선수 상세 페이지 (homeTeam만 사용) */}
       <Route
@@ -85,6 +98,34 @@ function App() {
           </ShellRoute>
         }
       />
+
+<Route
+        path="/players/pitchers"
+        element={
+          <ShellRoute>
+            <Pitchers />
+          </ShellRoute>
+        }
+      />
+
+<Route
+        path="/players/batters"
+        element={
+          <ShellRoute>
+            <Batters />
+          </ShellRoute>
+        }
+      />
+
+<Route
+        path="/matchplayer"
+        element={
+          <ShellRoute>
+            <MatchPlayer />
+          </ShellRoute>
+        }
+      />      
+
 
       {/* Free 관련 라우트 */}
       <Route

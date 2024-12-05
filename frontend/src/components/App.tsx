@@ -13,6 +13,11 @@ import GameLast from './GameLast';
 import GameRanking from './GameRanking';
 import GameDetail from './GameDetail'; // 새로운 컴포넌트 추가
 import GamePlayer from './GamePlayer'; // 새로운 컴포넌트 추가
+import Coaches from './Coaches';
+import Pitchers from "./Pitchers";
+import Batters from "./Batters";
+import MatchPlayer from "./MatchPlayer";
+
 
 function App() {
   const isLoggedIn = !!localStorage.getItem('userid');
@@ -34,6 +39,10 @@ function App() {
         <Route path="/findlike" element={<Findlike />} />
         <Route path="/gamelast" element={<GameLast />} />
         <Route path="/gameranking" element={<GameRanking />} />
+        <Route path="/players/coaches" element={<Coaches />} />
+        <Route path="/players/pitchers" element={<Pitchers />} />
+        <Route path="/players/batters" element={<Batters />} />
+        <Route path="/matchplayer" element={<MatchPlayer />} />
 
 
         
