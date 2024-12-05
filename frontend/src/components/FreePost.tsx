@@ -18,6 +18,7 @@ const FreePost = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [posts, setPosts] = useState<FreePost[]>([]);
   const [sortMethod, setSortMethod] = useState<number>(0); // 0: 최신순, 1: 조회순
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const fetchPosts = async (pageNumber: number, sortMethod: number) => {
     try {
@@ -37,9 +38,11 @@ const FreePost = () => {
       console.error('게시글 목록을 가져오는 중 오류 발생:', error);
     }
   };
-
+  
   useEffect(() => {
     fetchPosts(currentPage, sortMethod); // 페이지나 정렬 방식이 변경될 때마다 호출
+    const userId = localStorage.getItem("id");
+    setIsLoggedIn(!!userId); // id가 있으면 true, 없으면 false
   }, [currentPage, sortMethod]);
 
   return (
@@ -76,6 +79,7 @@ const FreePost = () => {
       {/* 게시글 목록 */}
       {posts.map((post) => (
         <FreePostBox
+          key={post.id}
           postId={post.id}
           title={post.title}
           author={post.user}
@@ -85,10 +89,18 @@ const FreePost = () => {
       ))}
 
       {/* 글 작성 버튼 */}
-      <button className="free-send-button">
-        <a href="/free/writing" className="write-button-link">
-          글 작성하기
-        </a>
+      <button
+        className="free-send-button"
+        onClick={(e) => {
+          if (!isLoggedIn) {
+            e.preventDefault();
+            alert("로그인 후 이용할 수 있습니다.");
+          } else {
+            window.location.href = "/free/writing"; // 페이지 이동
+          }
+        }}
+      >
+        글 작성하기
       </button>
 
 

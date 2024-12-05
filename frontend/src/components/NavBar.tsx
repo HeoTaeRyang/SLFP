@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/NavBar.css";
+import axios from 'axios';
 
 const NavBar: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -24,6 +25,23 @@ const NavBar: React.FC = () => {
     setUserId(null);
     navigate("/login");
   };
+
+  const HandleAttendence = async () => {
+    try {
+      const requestData = {
+        id: localStorage.getItem("userId")
+      };
+
+      const response = await axios.post(
+        'http://localhost:5000/attendence',
+        requestData,
+        { headers: { 'Content-Type': 'application/json' } }
+      );
+      alert(response.data.answer);
+    } catch (error) {
+      console.error('글 작성 중 오류 발생:', error);
+    }
+  }
 
   // 메뉴 호버 핸들러
   const handleMouseEnter = (menu: string) => setHoveredMenu(menu);
@@ -59,8 +77,8 @@ const NavBar: React.FC = () => {
             </a>
             {hoveredMenu === "경기 정보" && (
               <div className="dropdown-menu">
-                <a href="/gamenext">경기 일정</a>
-                <a href="/gamelast">경기 결과</a>
+                
+                <a href="/gamelast">경기 일정/결과</a>
                 <a href="/gameranking">순위</a>
               </div>
             )}
@@ -90,9 +108,11 @@ const NavBar: React.FC = () => {
                 {userId ? `${userId}님` : "사용자님"}
               </span>
           <a onClick={handleLogout} className="navbt4">
-          로그아웃
-            </a>
-          <div className="navbt4">_____ </div>
+            로그아웃
+          </a>
+          <a onClick={HandleAttendence} className="navbt4">
+            출석
+          </a>
 
             </>
           ) : (
@@ -103,7 +123,10 @@ const NavBar: React.FC = () => {
               <a href="/register" className="navbt5">
                 회원가입
               </a>
-              <div className="navbt4">______ </div>
+              <div className="navbt4">
+                _____
+              </div>
+
             </>
           )}
         </div>
@@ -114,4 +137,3 @@ const NavBar: React.FC = () => {
 };
 
 export default NavBar;
-
