@@ -76,7 +76,7 @@ const NavBar: React.FC = () => {
             {hoveredMenu === "커뮤니티" && (
               <div className="dropdown-menu">
                 <a href="/free/post">자유 게시판</a>
-                <a href="/findplayer">선수이미지 맞추기</a>
+                <a href="/matchplayer">선수이미지 맞추기</a>
                 <a href="/findlike">닮은꼴 선수 찾기</a>
               </div>
             )}

@@ -248,28 +248,6 @@ def find_player():
         print("Error occurred:", e)
         print(traceback.format_exc())  # 전체 오류 메시지 출력
         return jsonify({'error': str(e)}), 500
-    
-# 선수 맞추기
-@app.route('/matchPlayer', methods=['POST'])
-def match_player():
-    all_files = os.listdir(IMAGE_FOLDER)
-    
-    random_image_file = random.choice(all_files)
-    random_image_path = os.path.join(IMAGE_FOLDER, random_image_file) 
-    
-    player_number = os.path.splitext(random_image_file)[0]
-    
-    with open(random_image_path, "rb") as f:
-            player_photo = base64.b64encode(f.read()).decode('utf-8')
-    
-    player_name = player.get_player_name(player_number)
-
-    random_player = {
-        'number': player_name,
-        'image': player_photo
-    }
-    
-    return jsonify(random_player)
 
 # 회원가입
 @app.route('/register', methods=['POST'])
@@ -373,6 +351,32 @@ def players():
         })
         
     return jsonify({'player': combined_result})
+
+# 선수 맞추기
+@app.route('/matchPlayer', methods=['POST'])
+def match_player():
+    random_player = player.get_random_player()
+    target_number = random_player[0][1]
+    
+    result = []
+    for row in random_player:
+        name, number = row
+        
+        photo_path = os.path.join(IMAGE_FOLDER, f"{target_number}.jpg")
+        
+        if os.path.exists(photo_path):
+            with open(photo_path, "rb") as f:
+                photo_base64 = base64.b64encode(f.read()).decode('utf-8')
+        else:
+            photo_base64 = None
+            
+        result.append({
+            'name': name,
+            'number': number,
+            'photo': photo_base64
+        })
+        
+    return jsonify({'player': result})
     
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
