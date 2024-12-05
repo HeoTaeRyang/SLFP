@@ -107,20 +107,23 @@ const GameLast = () => {
   
     if (gameDate > currentDate) {
       // 미래의 경기라면 홈팀과 어웨이팀만 표시
-      return gamesForDate.map(
-        (game) => `${game.home_team}:${game.away_team}`
-      ).join("\n"); // 여러 경기 정보를 줄바꿈으로 구분
+      return gamesForDate
+        .map((game) => `${game.home_team}:${game.away_team}`)
+        .join("<br />"); // 여러 경기 정보를 <br />로 구분
     } else {
       // 과거 경기라면 점수와 상태 포함
-      return gamesForDate.map((game) => {
-        if (game.status === '취소') {
-          return `${game.home_team}:${game.away_team} (취소)`;
-        } else {
-          return `${game.home_team} ${game.home_score} - ${game.away_score} ${game.away_team}`;
-        }
-      }).join("\n"); // 여러 경기 정보를 줄바꿈으로 구분
+      return gamesForDate
+        .map((game) => {
+          if (game.status === '취소') {
+            return `${game.home_team}:${game.away_team} (취소)`;
+          } else {
+            return `${game.home_team} ${game.home_score} - ${game.away_score} ${game.away_team}`;
+          }
+        })
+        .join("<br />"); // 여러 경기 정보를 <br />로 구분
     }
   };
+  
 
   const isGameDay = (day: string) => {
     return games.some((game) => game.day === day); // 해당 날짜에 경기가 있는지 확인
@@ -167,7 +170,11 @@ const GameLast = () => {
                   {day}
                   {day && (
                     <div className="game-score">
-                      {getGameForDate(day) ? getGameForDate(day) : '경기 없음'}
+                      {getGameForDate(day) ? (
+                        <div dangerouslySetInnerHTML={{ __html: getGameForDate(day) }} />
+                      ) : (
+                        '경기 없음'
+                      )}
                     </div>
                   )}
                 </div>
