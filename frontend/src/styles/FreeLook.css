@@ -33,7 +33,7 @@
   }
   
   .comments-section-0 {
-    margin-top: 40px;
+    margin-top: 200px;
     
   }
   
@@ -97,11 +97,11 @@
   
   
   
-  .aiask-line,
-  .aiask-line * {
+  .free-line,
+  .free-line * {
   box-sizing: border-box;
   }
-  .aiask-line {
+  .free-line {
   margin-top: 50px;
   margin-bottom: 0px;
   border-style: solid;
@@ -111,11 +111,11 @@
   position: relative;
   }
   
-  .aiask-line1,
-  .aiask-line1 * {
+  .free-line1,
+  .free-line1 * {
   box-sizing: border-box;
   }
-  .aiask-line1 {
+  .free-line1 {
   margin-top: 0px;
   margin-bottom: 0px;
   border-style: solid;
@@ -147,10 +147,10 @@
     justify-content: center; /* 수평 중앙 정렬 */
     align-items: center; /* 수직 중앙 정렬 */
     margin: 20px; /* 컨테이너 주변 여백 */
-    width: 45px; /* 컨테이너 너비 */
+    width: 120px; /* 컨테이너 너비 */
     height: 40px; /* 컨테이너 높이 */
     position:absolute;
-    top:300px;
+    top:355px;
     left:1200px;
     background-color:#ffffff
   }
@@ -158,8 +158,8 @@
   .recommend-button {
     cursor: pointer; /* 마우스 포인터 변경 */
     padding: 0; /* 여백 제거 */
-    width: 50px; /* 버튼 크기 */
-    height: 50px; /* 버튼 크기 */
+    width: 120px; /* 버튼 크기 */
+    height: 80px; /* 버튼 크기 */
   }
   
 

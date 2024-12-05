@@ -33,6 +33,11 @@ const GameRanking = () => {
 
   return (
     <div className="ranking-container">
+      <a href="/">
+      <button className="list-button">
+       홈으로
+      </button>
+      </a>
       <h1>2024 시즌 야구 구단 순위</h1>
       <table className="ranking-table">
         <thead>
@@ -60,8 +65,10 @@ const GameRanking = () => {
           ))}
         </tbody>
       </table>
+      
     </div>
   );
 };
 
 export default GameRanking;
+
