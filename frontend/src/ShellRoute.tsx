@@ -12,6 +12,7 @@ import GameRanking from './components/GameRanking';//순위
 import Coaches from './components/Coaches';
 import Pitchers from './components/Pitchers';
 import Batters from './components/Batters';
+import MatchPlayer from './components/MatchPlayer';
 
 // ShellRoute 컴포넌트: 네비게이션 바와 콘텐츠를 공통 레이아웃으로 설정
 const ShellRoute = ({ children }: { children: React.ReactNode }) => {
@@ -101,7 +102,14 @@ function App() {
         }
       />
 
-      
+<Route
+        path="/matchplayer"
+        element={
+          <ShellRoute>
+            <MatchPlayer />
+          </ShellRoute>
+        }
+      />      
 
       {/* Free 관련 라우트 */}
       <Route

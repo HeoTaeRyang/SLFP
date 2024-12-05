@@ -14,6 +14,7 @@ import GameRanking from './GameRanking';//순위
 import Coaches from './Coaches';
 import Pitchers from "./Pitchers";
 import Batters from "./Batters";
+import MatchPlayer from "./MatchPlayer";
 
 function App() {
   const isLoggedIn = !!localStorage.getItem('userid');
@@ -39,6 +40,7 @@ function App() {
         <Route path="/players/coaches" element={<Coaches />} />
         <Route path="/players/pitchers" element={<Pitchers />} />
         <Route path="/players/batters" element={<Batters />} />
+        <Route path="/matchplayer" element={<MatchPlayer />} />
 
        {/* Free 관련 라우트 */}
        <Route path="/free/post" element={<FreePost />} />
