@@ -19,3 +19,13 @@ def get_players(roll):
     cursor = con.cursor()
     cursor.execute(f"SELECT name,number from Player WHERE roll = '{roll}';")
     return cursor.fetchall()
+
+def get_player_info(type):
+    cursor = con.cursor()
+    cursor.execute(f"SELECT name,number,roll FROM Player WHERE type = '{type}';")
+    return cursor.fetchall()
+
+def get_random_player():
+    cursor = con.cursor()
+    cursor.execute("SELECT name,number FROM Player WHERE type IN ('투수', '내야수', '외야수', '포수') ORDER BY RANDOM() LIMIT 4;")
+    return cursor.fetchall()
