@@ -108,9 +108,6 @@ const NavBar: React.FC = () => {
           </a>
           {isLoggedIn ? (
             <>
-              <span className="navbt3">
-                {userId ? `${userId}님` : "사용자님"}
-              </span>
           <a onClick={handleLogout} className="navbt4">
             로그아웃
           </a>
